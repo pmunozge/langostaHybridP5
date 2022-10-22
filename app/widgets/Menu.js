@@ -23,7 +23,8 @@ const styles = StyleSheet.create({
     },
     textoBoton:{
         color: '#00ff00',
-        fontSize: 14
+        fontSize: 14, 
+        fontFamily: 'monospace'
     }
 
 });
