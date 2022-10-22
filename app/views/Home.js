@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
-import { Menu } from '../widgets/Menu.js';
+import { Inicio } from '../widgets/Inicio.js';
 
 const styles = StyleSheet.create({
     contenedor: {
@@ -12,7 +12,7 @@ export class Home extends React.Component{
     render(){
         return(
             <View style={styles.contenedor}>
-                <Menu/>
+                <Inicio/>
             </View>
         )
     }
