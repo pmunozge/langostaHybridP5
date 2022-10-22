@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, StyleSheet,TouchableOpacity, Text,ImageBackground } from 'react-native';
+import { View, StyleSheet, ImageBackground } from 'react-native';
+import { Menu } from '../widgets/Menu.js';
 
 const styles = StyleSheet.create({
     contenedor: {
@@ -7,29 +8,8 @@ const styles = StyleSheet.create({
         backgroundColor: '#353535'
     },
     imagen: {
-        flex: 4,
-      
-    },
-    fila: {
-        flex:1,
-        flexDirection: 'row',
-        alignItems: 'center',
-        borderColor: '#ffffff',
-        borderBottomWidth: 1,
-        backgroundColor: '#353535'
-    },
-    boton: {
-        width: '50%',
-        height: '50%',
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#353535'
-    },
-    textoBoton:{
-        color: '#ffffff',
-        fontSize: 18
-    }
-
+        flex: 2,
+    }   
 });
 
 export class Inicio extends React.Component{
@@ -41,12 +21,7 @@ export class Inicio extends React.Component{
           
             <ImageBackground style={styles.imagen} source={require('../../assets/img/youarethebest.png')} />
          
-            <View style={styles.fila}>
-              {/*  Botones */}
-            </View>
-            <View style={styles.fila}>
-                {/*  Botones */}
-            </View>
+            <Menu/>
 
         </View>        
         )
