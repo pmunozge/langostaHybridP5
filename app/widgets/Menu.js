@@ -62,6 +62,14 @@ export class Menu extends React.Component{
                         <Text style={styles.textoBoton}>CONTRATACAR</Text>
                     </TouchableOpacity>
                 </View>
+                <View style={styles.fila}>
+                    <TouchableOpacity style={styles.boton} onPress={this.viewMsg}>
+                        <Text style={styles.textoBoton}>Zona 1 nueva</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.boton} onPress={this.viewMsg}>
+                        <Text style={styles.textoBoton}>Zona 2 nueva</Text>
+                    </TouchableOpacity>
+                </View>
         </View>
         )
     }
