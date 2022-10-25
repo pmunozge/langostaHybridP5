@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, StyleSheet, ImageBackground } from 'react-native';
 import { Menu } from '../widgets/Menu.js';
+import { ZonaLogo } from './ZonaLogo.js';
 
 const styles = StyleSheet.create({
     contenedor: {
@@ -18,7 +19,7 @@ export class Inicio extends React.Component{
         return(
         <View style={styles.contenedor}>
 
-          
+            <ZonaLogo/>
             <ImageBackground style={styles.imagen} source={require('../../assets/img/youarethebest.png')} />
          
             <Menu/>
