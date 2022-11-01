@@ -3,7 +3,6 @@ import { View, StyleSheet,TouchableOpacity, Text, Alert} from 'react-native';
 import {styles} from '../estilosApp.js';
 
 
-
 export class Menu extends React.Component{
 
     viewMsg = () => {
