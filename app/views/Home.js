@@ -7,9 +7,10 @@ import {styles} from '../estilosApp.js';
 
 export class Home extends React.Component{
     render(){
+        const { navigate } = this.props.navigation;
         return(
             <View style={styles.contenedor}>
-                <Inicio/>
+                <Inicio navigate={navigate}/>
             </View>
         )
     }

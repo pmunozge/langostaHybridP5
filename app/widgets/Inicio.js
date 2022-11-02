@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, ImageBackground } from 'react-native';
+import { View, StyleSheet, ImageBackground, Button } from 'react-native';
 import { Menu } from '../widgets/Menu.js';
 import { ZonaLogo } from './ZonaLogo.js';
 
@@ -21,8 +21,8 @@ export class Inicio extends React.Component{
 
             <ZonaLogo/>
             <ImageBackground style={styles.imagen} source={require('../../assets/img/youarethebest.png')} />
-         
-            <Menu/>
+
+            <Menu navigate={this.props.navigate}/>
 
         </View>        
         )
