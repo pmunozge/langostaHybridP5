@@ -24,6 +24,9 @@ export const styles = StyleSheet.create({
         color: '#00ff00',
         fontSize: 14, 
         fontFamily: 'monospace'
-    }
+    },
+    contenido: {
+        flex: 2,
+    }  
 
 });

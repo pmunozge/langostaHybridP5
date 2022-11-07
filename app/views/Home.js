@@ -11,6 +11,7 @@ export class Home extends React.Component{
         return(
             <View style={styles.contenedor}>
                 <Inicio navigate={navigate}/>
+                
             </View>
         )
     }
