@@ -12,21 +12,29 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 function HomeScreen({navigation}) {
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-    <Text>Home Screen</Text>
-    <Button
-      title="Go to Details"
-      onPress={() => navigation.navigate('Home')}
-    />
-  </View>
+    <Home/>
   );
 }
 
-function EvolucionScreen() {
+function EvolucionScreen({ navigation }) {
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text> Evolucion Screen</Text>
-    </View>
+   <Evolucion/>
+  );
+}
+
+function NuevoRetoScreen({ navigation }) {
+  return (
+    <NuevoReto/>
+  );
+}
+function PerfilScreen({ navigation }) {
+  return (
+    <Perfil/>
+  );
+}
+function ContactarScreen({ navigation }) {
+  return (
+    <Contactar/>
   );
 }
 
@@ -35,7 +43,7 @@ const Stack = createNativeStackNavigator();
 
 export default function App() {
   return ( 
-<NavigationContainer>
+    <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name="Home" component={Home} options={{title: 'Langosta Home'}} />
         <Stack.Screen name="Evolucion" component={Evolucion} options={{title: 'Langosta Evolucion'}}/>

@@ -12,16 +12,14 @@ export class Perfil extends React.Component{
 
     
     render(){
-
-    
-
+        const { navigate } = this.props.navigation;
         return(
             <View style={styles.contenedor}>
                 <ZonaLogo/>
                 <View style= {styles.contenido}>
                     <Text>Contenido de Perfil</Text>
                 </View>
-                <Menu navigate={this.props.navigate}/>
+                <Menu navigate={navigate}/>
             </View>        
         )
     }

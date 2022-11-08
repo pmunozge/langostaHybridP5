@@ -7,8 +7,7 @@ import { ZonaLogo } from '../widgets/ZonaLogo.js';
 
 export class Evolucion extends React.Component{
     render(){
-
-    
+        const { navigate } = this.props.navigation;
 
         return(
             <View style={styles.contenedor}>
@@ -16,7 +15,7 @@ export class Evolucion extends React.Component{
                 <View style= {styles.contenido}>
                     <Text>Contenido de Evolucion</Text>
                 </View>
-                <Menu navigate={this.props.navigate}/>
+                <Menu navigate={navigate}/>
             </View>      
         )
     }
