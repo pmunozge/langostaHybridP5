@@ -21,6 +21,6 @@ export class Contactar extends React.Component{
                 <Menu navigate={navigate}/>
             </View>          
         )
-    }
+    };
      
 }

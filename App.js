@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View } from 'react-native';
 import { Text, Button } from 'react-native';
@@ -10,46 +11,64 @@ import { Contactar} from './app/views/Contactar.js'
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-function HomeScreen({navigation}) {
-  return (
-    <Home/>
-  );
-}
-
-function EvolucionScreen({ navigation }) {
-  return (
-   <Evolucion/>
-  );
-}
-
-function NuevoRetoScreen({ navigation }) {
-  return (
-    <NuevoReto/>
-  );
-}
-function PerfilScreen({ navigation }) {
-  return (
-    <Perfil/>
-  );
-}
-function ContactarScreen({ navigation }) {
-  return (
-    <Contactar/>
-  );
-}
-
 const Stack = createNativeStackNavigator();
 
 
 export default function App() {
+  
   return ( 
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="Home" component={Home} options={{title: 'Langosta Home'}} />
-        <Stack.Screen name="Evolucion" component={Evolucion} options={{title: 'Langosta Evolucion'}}/>
-        <Stack.Screen name="NuevoReto" component={NuevoReto} options={{title: 'Langosta Reto'}}/>
-        <Stack.Screen name="Perfil" component={Perfil} options={{title: 'Langosta Perfil'}}/>
-        <Stack.Screen name="Contactar" component={Contactar} options={{title: 'Langosta Contactar'}}/>
+        <Stack.Screen name="Home" component={Home} options={{title: 'Langosta Home'} } />
+        <Stack.Screen 
+          name="Evolucion" 
+          component={Evolucion} 
+          options={({ navigation }) => ({
+            title: 'Evolucion',
+              
+              headerRight: () => (
+                <Button title="Inicio" onPress={() =>
+                  navigation.navigate('Home')} color="#ff0" />
+              ),
+            })}
+        />
+        <Stack.Screen 
+          name="NuevoReto" 
+          component={NuevoReto} 
+          options={({ navigation }) => ({
+            title: 'Nuevo Reto',
+              
+              headerRight: () => (
+                <Button title="Inicio" onPress={() =>
+                  navigation.navigate('Home')} color="#ff0" />
+              ),
+            })}
+      />
+        <Stack.Screen 
+          name="Perfil" 
+          component={Perfil} 
+          options={({ navigation }) => ({
+            title: 'Perfil',
+            
+            headerRight: () => (
+              <Button title="Inicio" onPress={() =>
+                navigation.navigate('Home')} color="#ff0" />
+            ),
+          })}
+        
+      />
+        <Stack.Screen 
+          name="Contactar" 
+          component={Contactar} 
+          options={({ navigation }) => ({
+            title: 'Contactar',
+              
+              headerRight: () => (
+                <Button title="Inicio" onPress={() =>
+                  navigation.navigate('Home')} color="#ff0" />
+              ),
+            })}
+      />
       </Stack.Navigator>
     </NavigationContainer>
   );
