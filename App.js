@@ -18,7 +18,17 @@ export default function App() {
   
   return ( 
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator screenOptions={{
+          headerStyle: {
+            backgroundColor: '#ff0',
+          },
+          headerTitleStyle: {
+            fontWeight: 'bold',
+            color: '#00ff00',
+          },
+        }} 
+      >
+        
         <Stack.Screen name="Home" component={Home} options={{title: 'Langosta Home'} } />
         <Stack.Screen 
           name="Evolucion" 
@@ -28,7 +38,7 @@ export default function App() {
               
               headerRight: () => (
                 <Button title="Inicio" onPress={() =>
-                  navigation.navigate('Home')} color="#ff0" />
+                  navigation.navigate('Home')} color="orange" />
               ),
             })}
         />
@@ -40,7 +50,7 @@ export default function App() {
               
               headerRight: () => (
                 <Button title="Inicio" onPress={() =>
-                  navigation.navigate('Home')} color="#ff0" />
+                  navigation.navigate('Home')} color="orange" />
               ),
             })}
       />
@@ -52,7 +62,7 @@ export default function App() {
             
             headerRight: () => (
               <Button title="Inicio" onPress={() =>
-                navigation.navigate('Home')} color="#ff0" />
+                navigation.navigate('Home')} color="orange" />
             ),
           })}
         
@@ -65,7 +75,7 @@ export default function App() {
               
               headerRight: () => (
                 <Button title="Inicio" onPress={() =>
-                  navigation.navigate('Home')} color="#ff0" />
+                  navigation.navigate('Home')} color="orange" />
               ),
             })}
       />
