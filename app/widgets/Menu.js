@@ -45,7 +45,7 @@ export class Menu extends React.Component{
                 </View>
                 <View style={styles.fila}>
                     <TouchableOpacity style={styles.boton} onPress={() => this.props.navigate('Companieros')}>
-                        <Text style={styles.textoBoton}>CCOMPAÑEROS</Text>
+                        <Text style={styles.textoBoton}>COMPAÑEROS</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.boton} onPress={() => this.props.navigate('Grupos')}>
                         <Text style={styles.textoBoton}>GRUPOS</Text>
