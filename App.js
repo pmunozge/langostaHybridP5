@@ -12,6 +12,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Companieros } from './app/views/Companieros.js';
 import { Grupos } from './app/views/Grupos.js';
+import { About } from './app/views/About.js';
 
 const Stack = createNativeStackNavigator();
 
@@ -46,8 +47,8 @@ export default function App() {
                   navigation.navigate('Home')} color="orange" />
               ),
               headerLeft: () =>(
-                <Button title="Back" onPress={() =>
-                  navigation.goBack()} color="orange" />
+                <Button title="About" onPress={() =>
+                  navigation.navigate('About')} color="orange" />
   
               ),
             })}
@@ -63,8 +64,8 @@ export default function App() {
                   navigation.navigate('Home')} color="orange" />
               ),
               headerLeft: () =>(
-                <Button title="Back" onPress={() =>
-                  navigation.goBack()} color="orange" />
+                <Button title="About" onPress={() =>
+                  navigation.navigate('About')} color="orange" />
   
               ),
             })}
@@ -80,8 +81,8 @@ export default function App() {
                 navigation.navigate('Home')} color="orange" />
             ),
             headerLeft: () =>(
-              <Button title="Back" onPress={() =>
-                navigation.goBack()} color="orange" />
+              <Button title="About" onPress={() =>
+                navigation.navigate('About')} color="orange" />
 
             ),
           })}
@@ -99,8 +100,8 @@ export default function App() {
                 
               ),
             headerLeft: () =>(
-              <Button title="Back" onPress={() =>
-                navigation.goBack()} color="orange" />
+              <Button title="About" onPress={() =>
+                navigation.navigate('About')} color="orange" />
 
             ),
             })}
@@ -116,8 +117,8 @@ export default function App() {
                 navigation.navigate('Home')} color="orange" />
             ),
             headerLeft: () =>(
-              <Button title="Back" onPress={() =>
-                navigation.goBack()} color="orange" />
+              <Button title="About" onPress={() =>
+                navigation.navigate('About')} color="orange" />
   
             )
             })}
@@ -133,10 +134,28 @@ export default function App() {
                 navigation.navigate('Home')} color="orange" />
             ),
             headerLeft: () =>(
+              <Button title="About" onPress={() =>
+                navigation.navigate('About')} color="orange" />
+  
+            ),
+            })}
+        />
+         <Stack.Screen 
+          name="About" 
+          component={About} 
+          options={({ navigation }) => ({
+            title: 'About',
+            headerTitleAlign: 'center',
+            headerRight: () => (
+              <Button title="Inicio" onPress={() =>
+                navigation.navigate('Home')} color="orange" />
+            ),
+            headerLeft: () =>(
               <Button title="Back" onPress={() =>
                 navigation.goBack()} color="orange" />
   
             ),
+           
             })}
         />
       </Stack.Navigator>
