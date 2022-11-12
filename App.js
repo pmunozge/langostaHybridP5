@@ -10,6 +10,8 @@ import { Contactar} from './app/views/Contactar.js'
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { Companieros } from './app/views/Companieros.js';
+import { Grupos } from './app/views/Grupos.js';
 
 const Stack = createNativeStackNavigator();
 
@@ -29,16 +31,24 @@ export default function App() {
         }} 
       >
         
-        <Stack.Screen name="Home" component={Home} options={{title: 'Langosta Home'} } />
+        <Stack.Screen 
+          name="Home" 
+          component={Home} 
+          options={{title: 'Langosta Home',headerTitleAlign: 'center'} } />
         <Stack.Screen 
           name="Evolucion" 
           component={Evolucion} 
           options={({ navigation }) => ({
             title: 'Evolucion',
-              
+            headerTitleAlign: 'center',
               headerRight: () => (
                 <Button title="Inicio" onPress={() =>
                   navigation.navigate('Home')} color="orange" />
+              ),
+              headerLeft: () =>(
+                <Button title="Back" onPress={() =>
+                  navigation.goBack()} color="orange" />
+  
               ),
             })}
         />
@@ -47,38 +57,88 @@ export default function App() {
           component={NuevoReto} 
           options={({ navigation }) => ({
             title: 'Nuevo Reto',
-              
+            headerTitleAlign: 'center',
               headerRight: () => (
                 <Button title="Inicio" onPress={() =>
                   navigation.navigate('Home')} color="orange" />
               ),
+              headerLeft: () =>(
+                <Button title="Back" onPress={() =>
+                  navigation.goBack()} color="orange" />
+  
+              ),
             })}
-      />
+        />
         <Stack.Screen 
           name="Perfil" 
           component={Perfil} 
           options={({ navigation }) => ({
             title: 'Perfil',
-            
+            headerTitleAlign: 'center',
             headerRight: () => (
               <Button title="Inicio" onPress={() =>
                 navigation.navigate('Home')} color="orange" />
             ),
+            headerLeft: () =>(
+              <Button title="Back" onPress={() =>
+                navigation.goBack()} color="orange" />
+
+            ),
           })}
         
-      />
+        />
         <Stack.Screen 
           name="Contactar" 
           component={Contactar} 
           options={({ navigation }) => ({
             title: 'Contactar',
-              
-              headerRight: () => (
+            headerTitleAlign: 'center',
+            headerRight: () => (
                 <Button title="Inicio" onPress={() =>
                   navigation.navigate('Home')} color="orange" />
+                
               ),
+            headerLeft: () =>(
+              <Button title="Back" onPress={() =>
+                navigation.goBack()} color="orange" />
+
+            ),
             })}
-      />
+        />
+         <Stack.Screen 
+          name="Companieros" 
+          component={Companieros} 
+          options={({ navigation }) => ({
+            title: 'Compañeros',
+            headerTitleAlign: 'center',
+            headerRight: () => (
+              <Button title="Inicio" onPress={() =>
+                navigation.navigate('Home')} color="orange" />
+            ),
+            headerLeft: () =>(
+              <Button title="Back" onPress={() =>
+                navigation.goBack()} color="orange" />
+  
+            )
+            })}
+        />
+         <Stack.Screen 
+          name="Grupos" 
+          component={Grupos} 
+          options={({ navigation }) => ({
+            title: 'Grupos',
+            headerTitleAlign: 'center',
+            headerRight: () => (
+              <Button title="Inicio" onPress={() =>
+                navigation.navigate('Home')} color="orange" />
+            ),
+            headerLeft: () =>(
+              <Button title="Back" onPress={() =>
+                navigation.goBack()} color="orange" />
+  
+            ),
+            })}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
