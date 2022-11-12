@@ -22,7 +22,7 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator screenOptions={{
           headerStyle: {
-            backgroundColor: '#ff0',
+            backgroundColor: '#353000',
           },
           headerTitleStyle: {
             fontWeight: 'bold',
