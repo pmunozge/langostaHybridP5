@@ -158,6 +158,23 @@ export default function App() {
            
             })}
         />
+         <Stack.Screen 
+          name="DetalleReto" 
+          component={Grupos} 
+          options={({ navigation }) => ({
+            title: 'DetalleReto',
+            headerTitleAlign: 'center',
+            headerRight: () => (
+              <Button title="Inicio" onPress={() =>
+                navigation.navigate('Home')} color="orange" />
+            ),
+            headerLeft: () =>(
+              <Button title="About" onPress={() =>
+                navigation.navigate('About')} color="orange" />
+  
+            ),
+            })}
+          />
       </Stack.Navigator>
     </NavigationContainer>
   );
