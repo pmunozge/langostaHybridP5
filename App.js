@@ -13,12 +13,17 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Companieros } from './app/views/Companieros.js';
 import { Grupos } from './app/views/Grupos.js';
 import { About } from './app/views/About.js';
+import { SafeAreaView } from 'react-navigation';
+
+import {db}from './app/config/db.js';
 
 const Stack = createNativeStackNavigator();
 
 
 export default function App() {
-  
+
+
+   
   return ( 
     <NavigationContainer>
       <Stack.Navigator screenOptions={{
@@ -35,7 +40,8 @@ export default function App() {
         <Stack.Screen 
           name="Home" 
           component={Home} 
-          options={{title: 'Langosta Home',headerTitleAlign: 'center'} } />
+          options={{title: 'Langosta Home',headerTitleAlign: 'center'} }
+       />
         <Stack.Screen 
           name="Evolucion" 
           component={Evolucion} 
@@ -52,6 +58,8 @@ export default function App() {
   
               ),
             })}
+
+            
         />
         <Stack.Screen 
           name="NuevoReto" 
@@ -159,14 +167,14 @@ export default function App() {
             })}
         />
       </Stack.Navigator>
-    </NavigationContainer>
+    </NavigationContainer> 
   );
 }
 
-const styles = StyleSheet.create({
+ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
 
   },
-});
+}); 
