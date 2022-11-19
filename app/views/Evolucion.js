@@ -1,12 +1,13 @@
 import React, { Component, useEffect } from 'react';
 import {styles} from '../estilosApp.js';
-import { Text , View , FlatList} from 'react-native';
+import { Text , View , FlatList, TouchableOpacity} from 'react-native';
 import { Badge } from "react-native-elements";
 
 import db from '../config/db.js';
 import { collection, getDocs } from "firebase/firestore";
 import { Menu } from '../widgets/Menu.js';
 import { ZonaLogo } from '../widgets/ZonaLogo.js';
+//import { TouchableOpacity } from 'react-native-gesture-handler';
 
 let retos = [];
 
@@ -32,30 +33,19 @@ export class Evolucion extends Component {
     }
 
     renderItem = data =>
-        <View style= {styles.contenido}>
-            
-            <Text>{data.item.value.nombre}</Text>
-            <Text>  {data.item.value.detalle} <Badge value={data.item.value.completado} status="success"></Badge></Text>
-        </View>
+    <View style={styles.contenedor}>
+        <View style= {styles.fila}>
+              <TouchableOpacity  >
+                 <Text >{data.item.value.nombre}</Text>
+                    <Text>  {data.item.value.detalle} <Badge value={data.item.value.completado} status="success"></Badge></Text>
+             </TouchableOpacity>    
+          </View>
+         
+    </View>
 
 
      render(){
         const { navigate } = this.props.navigation;
-
- /*       if(this.state.loading){
-            return(
-            <View >
-            <Text>Cargando langostas</Text>
-        </View>
-        )
-        }else{
-            return(
-                <View >
-                <Text>Langostas cargadas</Text>
-            </View>
-            )
-        }
-*/
 
         return(
             
@@ -64,6 +54,7 @@ export class Evolucion extends Component {
                 <View style= {styles.contenido}>
                 
                     <FlatList
+                        onPress={() => this.props.navigate('Contactar')}
                         data= {this.state.retos}
                         renderItem={item=>this.renderItem(item)}
                         keyExtractor={(item,index)=>item.key}
