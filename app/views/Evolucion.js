@@ -51,7 +51,7 @@ export class Evolucion extends Component {
                         //renderItem={item=>this.renderItem(item)}
                         renderItem={({ item }) => 
                             
-                            <TouchableOpacity onPress={()=> this.onclick_item(item.value.id)}>
+                            <TouchableOpacity onPress={()=> this.onclick_item(item)}>
 
                                  <Text >{item.value.nombre}</Text>
                                 <Text>  {item.value.detalle} <Badge value={item.value.completado} status="success"></Badge></Text>
@@ -70,11 +70,11 @@ export class Evolucion extends Component {
 
 
     onclick_item = (item) => {
-
+        let id = item.value.id;
         console.log(item);
 
-        
-        switch (item) {
+        //TODO: Con item pasar los parametros a la pantalla de detalles
+        switch (id) {
           case 0:
             this.props.navigation.navigate('Contactar');
        
