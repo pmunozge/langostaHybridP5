@@ -1,6 +1,8 @@
 import React, { Component, useEffect } from 'react';
 import {styles} from '../estilosApp.js';
 import { Text , View , FlatList} from 'react-native';
+import { Badge } from "react-native-elements";
+
 import db from '../config/db.js';
 import { collection, getDocs } from "firebase/firestore";
 import { Menu } from '../widgets/Menu.js';
@@ -31,7 +33,9 @@ export class Evolucion extends Component {
 
     renderItem = data =>
         <View style= {styles.contenido}>
+            
             <Text>{data.item.value.nombre}</Text>
+            <Text>  {data.item.value.detalle} <Badge value={data.item.value.completado} status="success"></Badge></Text>
         </View>
 
 
@@ -58,14 +62,13 @@ export class Evolucion extends Component {
             <View style={styles.contenedor}>
                 <ZonaLogo/>
                 <View style= {styles.contenido}>
-                    <Text>Contenido de Evolucion</Text>
+                
                     <FlatList
                         data= {this.state.retos}
                         renderItem={item=>this.renderItem(item)}
                         keyExtractor={(item,index)=>item.key}
                     />
                 </View>
-                <Text>Contenido de Evolucion2</Text>
                 <Menu navigate={navigate}/>
             </View>          
         );
