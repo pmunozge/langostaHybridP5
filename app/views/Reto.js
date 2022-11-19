@@ -2,7 +2,7 @@ import React from 'react';
 
 import { View, StyleSheet,TouchableOpacity, Text, Alert} from 'react-native';
 import {styles} from '../estilosApp.js';
-import { Menu } from '../widgets/Menu.js';
+import { MenuRetos } from '../widgets/MenuRetos.js';
 import { ZonaLogo } from '../widgets/ZonaLogo.js';
 
 
@@ -22,7 +22,7 @@ export class Reto extends React.Component{
             <View style={styles.contenedor}>
                 <ZonaLogo/>
                 <View style= {styles.contenido}>
-                 {/*  <Text >{this.props.navigation.getParam('nombre')}</Text> */}
+           
                  <Text>Nonbre: {nombre}</Text>
                  <Text>Categoria: {categoria}</Text>
                  <Text>Detalle: {detalle}</Text>
@@ -30,7 +30,7 @@ export class Reto extends React.Component{
                  <Text>Completado: {completado}</Text>
                  <Text>Tiempo: {tiempo}</Text>
                 </View>
-                <Menu navigate={navigate}/>
+                <MenuRetos navigate={navigate}/>
             </View>        
         )
     }

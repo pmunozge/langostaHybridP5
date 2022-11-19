@@ -5,7 +5,7 @@ import { Badge } from "react-native-elements";
 
 import db from '../config/db.js';
 import { collection, connectFirestoreEmulator, getDocs } from "firebase/firestore";
-import { Menu } from '../widgets/Menu.js';
+import { MenuRetos } from '../widgets/MenuRetos.js';
 import { ZonaLogo } from '../widgets/ZonaLogo.js';
 //import { TouchableOpacity } from 'react-native-gesture-handler';
 
@@ -45,13 +45,13 @@ export class Evolucion extends Component {
                 <ZonaLogo/>
                 <View style= {styles.contenido}>
                 
-                    <FlatList
+                    <FlatList 
                        /* onPress={() => this.props.navigation.navigate('Reto', {'nombre':item.value.nombre, 'categoria': item.value.categoria, 'detalle':item.value.detalle})}*/
                         data= {this.state.retos}
                         //renderItem={item=>this.renderItem(item)}
                         renderItem={({ item }) => 
                             
-                            <TouchableOpacity onPress={()=> this.props.navigation.navigate('Reto', 
+                            <TouchableOpacity style= {styles.listaitem} onPress={()=> this.props.navigation.navigate('Reto', 
                                 {'nombre':item.value.nombre, 
                                 'categoria': item.value.categoria, 
                                 'detalle':item.value.detalle ,
@@ -59,15 +59,16 @@ export class Evolucion extends Component {
                                 'tiempo':item.value.tiempo,
                                 'completado':item.value.completado})}>
 
-                                <Text> {item.value.nombre} </Text>
-                                <Text> {item.value.detalle} <Badge value={item.value.completado} status="success"></Badge></Text>
+                                <Text style= {styles.textolistatitulo}> {item.value.nombre}~{"\n"}<Text style= {styles.textolistacontenido}> {item.value.detalle}</Text></Text>
+                                
+                                <Badge value={item.value.completado} status="success"></Badge>
            
                             </TouchableOpacity>
                         }
                         keyExtractor={(item,index)=>item.key}
                     />
                 </View>
-                <Menu navigate={navigate}/>
+                <MenuRetos navigate={navigate}/>
             </View>          
         );
     };
