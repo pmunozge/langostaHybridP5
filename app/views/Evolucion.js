@@ -52,13 +52,10 @@ export class Evolucion extends Component {
                         renderItem={({ item }) => 
                             
                             <TouchableOpacity onPress={()=> this.onclick_item(item.value.id)}>
-                              <View style={styles.contenedor}>
-                                <View style= {styles.fila}>
-                                 <Text >{item.value.nombre}</Text>
 
-                                  <Text>  {item.value.detalle} <Badge value={item.value.completado} status="success"></Badge></Text>
-                                </View>
-                                    </View>
+                                 <Text >{item.value.nombre}</Text>
+                                <Text>  {item.value.detalle} <Badge value={item.value.completado} status="success"></Badge></Text>
+           
                             </TouchableOpacity>
                         }
                         keyExtractor={(item,index)=>item.key}
