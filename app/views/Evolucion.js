@@ -4,7 +4,7 @@ import { Text , View , FlatList, TouchableOpacity} from 'react-native';
 import { Badge } from "react-native-elements";
 
 import db from '../config/db.js';
-import { collection, getDocs } from "firebase/firestore";
+import { collection, connectFirestoreEmulator, getDocs } from "firebase/firestore";
 import { Menu } from '../widgets/Menu.js';
 import { ZonaLogo } from '../widgets/ZonaLogo.js';
 //import { TouchableOpacity } from 'react-native-gesture-handler';
@@ -13,6 +13,7 @@ let retos = [];
 
 
 export class Evolucion extends Component { 
+
 
     state = {
         retos: [],
@@ -29,19 +30,10 @@ export class Evolucion extends Component {
 
         });
         this.setState({retos:retos});
-        console.log(retos);
+        //console.log(retos);
     }
 
-    renderItem = data =>
-    <View style={styles.contenedor}>
-        <View style= {styles.fila}>
-              <TouchableOpacity  >
-                 <Text >{data.item.value.nombre}</Text>
-                    <Text>  {data.item.value.detalle} <Badge value={data.item.value.completado} status="success"></Badge></Text>
-             </TouchableOpacity>    
-          </View>
-         
-    </View>
+   
 
 
      render(){
@@ -56,7 +48,19 @@ export class Evolucion extends Component {
                     <FlatList
                         onPress={() => this.props.navigate('Contactar')}
                         data= {this.state.retos}
-                        renderItem={item=>this.renderItem(item)}
+                        //renderItem={item=>this.renderItem(item)}
+                        renderItem={({ item }) => 
+                            
+                            <TouchableOpacity onPress={()=> this.onclick_item(item.value.id)}>
+                              <View style={styles.contenedor}>
+                                <View style= {styles.fila}>
+                                 <Text >{item.value.nombre}</Text>
+
+                                  <Text>  {item.value.detalle} <Badge value={item.value.completado} status="success"></Badge></Text>
+                                </View>
+                                    </View>
+                            </TouchableOpacity>
+                        }
                         keyExtractor={(item,index)=>item.key}
                     />
                 </View>
@@ -64,4 +68,27 @@ export class Evolucion extends Component {
             </View>          
         );
     };
+
+
+
+
+    onclick_item = (item) => {
+
+        console.log(item);
+
+        
+        switch (item) {
+          case 0:
+            this.props.navigation.navigate('Contactar');
+       
+            break;
+          case 1:
+            this.props.navigation.navigate('Grupos');
+            break;
+          default:
+          //whatever you want
+        }
+    }
+
+
  }
