@@ -46,15 +46,21 @@ export class Evolucion extends Component {
                 <View style= {styles.contenido}>
                 
                     <FlatList
-                        onPress={() => this.props.navigate('Contactar')}
+                       /* onPress={() => this.props.navigation.navigate('Reto', {'nombre':item.value.nombre, 'categoria': item.value.categoria, 'detalle':item.value.detalle})}*/
                         data= {this.state.retos}
                         //renderItem={item=>this.renderItem(item)}
                         renderItem={({ item }) => 
                             
-                            <TouchableOpacity onPress={()=> this.onclick_item(item.value.id)}>
+                            <TouchableOpacity onPress={()=> this.props.navigation.navigate('Reto', 
+                                {'nombre':item.value.nombre, 
+                                'categoria': item.value.categoria, 
+                                'detalle':item.value.detalle ,
+                                'periodicidad':item.value.periodicidad,
+                                'tiempo':item.value.tiempo,
+                                'completado':item.value.completado})}>
 
-                                 <Text >{item.value.nombre}</Text>
-                                <Text>  {item.value.detalle} <Badge value={item.value.completado} status="success"></Badge></Text>
+                                <Text> {item.value.nombre} </Text>
+                                <Text> {item.value.detalle} <Badge value={item.value.completado} status="success"></Badge></Text>
            
                             </TouchableOpacity>
                         }
@@ -73,10 +79,10 @@ export class Evolucion extends Component {
 
         console.log(item);
 
-        
-        switch (item) {
+        this.props.navigation.navigate('Reto');
+   /*      switch (item) {
           case 0:
-            this.props.navigation.navigate('Contactar');
+            this.props.navigation.navigate('Reto');
        
             break;
           case 1:
@@ -84,7 +90,7 @@ export class Evolucion extends Component {
             break;
           default:
           //whatever you want
-        }
+        } */
     }
 
 

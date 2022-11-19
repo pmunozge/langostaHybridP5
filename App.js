@@ -7,6 +7,7 @@ import { Evolucion} from './app/views/Evolucion.js'
 import { NuevoReto} from './app/views/NuevoReto.js'
 import { Perfil} from './app/views/Perfil.js'
 import { Contactar} from './app/views/Contactar.js'
+import { Reto} from './app/views/Reto.js'
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -153,6 +154,24 @@ export default function App() {
           component={About} 
           options={({ navigation }) => ({
             title: 'About',
+            headerTitleAlign: 'center',
+            headerRight: () => (
+              <Button title="Inicio" onPress={() =>
+                navigation.navigate('Home')} color="orange" />
+            ),
+            headerLeft: () =>(
+              <Button title="Back" onPress={() =>
+                navigation.goBack()} color="orange" />
+  
+            ),
+           
+            })}
+        />
+          <Stack.Screen 
+            name="Reto" 
+            component={Reto} 
+            options={({ navigation }) => ({
+            title: 'Reto',
             headerTitleAlign: 'center',
             headerRight: () => (
               <Button title="Inicio" onPress={() =>
