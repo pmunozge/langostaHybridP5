@@ -58,11 +58,13 @@ export class Evolucion extends Component {
                                 'periodicidad':item.value.periodicidad,
                                 'tiempo':item.value.tiempo,
                                 'completado':item.value.completado})}>
-
-                                <Text style= {styles.textolistatitulo}> {item.value.nombre}~{"\n"}<Text style= {styles.textolistacontenido}> {item.value.detalle}</Text></Text>
-                                
-                                <Badge value={item.value.completado} status="success"></Badge>
-           
+                                <View style={styles.vistavertical}>
+                                    <Text style= {styles.textolistatitulo}> {item.value.nombre}</Text>
+                                    <Text style= {styles.textolistacontenido}> {item.value.detalle}</Text>
+                                </View>
+                                <View style={styles.vistabadge}>
+                                    <Badge value={item.value.completado} status="success"></Badge>
+                                </View>
                             </TouchableOpacity>
                         }
                         keyExtractor={(item,index)=>item.key}

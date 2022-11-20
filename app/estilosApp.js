@@ -39,6 +39,10 @@ export const styles = StyleSheet.create({
         fontSize: 14, 
         fontFamily: 'monospace'
     },
+    vistavertical:{
+        flex:1,
+        flexDirection: 'column',
+    },
     textolistatitulo:{
         color: '#00ff00',
         fontSize: 12, 
@@ -52,6 +56,9 @@ export const styles = StyleSheet.create({
     },
    contenido: {
         flex: 2,
+    },
+    vistabadge:{
+        padding:4,
     },
     listaitem:{
         flexDirection: 'row',
