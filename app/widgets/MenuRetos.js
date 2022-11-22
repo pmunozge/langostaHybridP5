@@ -9,8 +9,6 @@ import { withNavigation } from 'react-navigation';
 
 export class MenuRetos extends React.Component{
 
-    
-
     viewMsg = () => {
         Alert.alert(
             "Botón presionado",
@@ -18,7 +16,7 @@ export class MenuRetos extends React.Component{
             [
                 {
                     text: "Si",
-                    
+    
                 },
             ],
              )
