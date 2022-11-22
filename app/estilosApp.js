@@ -13,6 +13,13 @@ export const styles = StyleSheet.create({
         borderBottomWidth: 1,
         backgroundColor: '#353000'
     },
+    filareto: {
+        flex:1,
+        alignItems: 'center',
+        borderColor: '#ffffff',
+        borderBottomWidth: 1,
+        backgroundColor: '#353000'
+    },
     boton: {
         width: '50%',
         height: '50%',
@@ -20,13 +27,43 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: '#353000'
     },
-    textoBoton:{
+    botonreto: {
+        width: '100%',
+        height: '100%',
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#353000'
+    },
+   textoBoton:{
         color: '#00ff00',
         fontSize: 14, 
         fontFamily: 'monospace'
     },
-    contenido: {
+    vistavertical:{
+        flex:1,
+        flexDirection: 'column',
+    },
+    textolistatitulo:{
+        color: '#00ff00',
+        fontSize: 12, 
+        fontFamily: 'monospace'
+    },
+    textolistacontenido:{
+        color: '#00ff00',
+        fontSize: 10, 
+        fontFamily: 'monospace',
+       
+    },
+   contenido: {
         flex: 2,
-    }  
+    },
+    vistabadge:{
+        padding:4,
+    },
+    listaitem:{
+        flexDirection: 'row',
+        backgroundColor: 'orange',
+        padding: 10,
 
+    }
 });

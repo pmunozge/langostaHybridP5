@@ -16,7 +16,16 @@ const firebaseConfig = {
   messagingSenderId: "932970278776",
   appId: "1:932970278776:web:4b351427bbc3168a01228d"
 };
-
+/*const firebaseConfig = {
+  apiKey: "AIzaSyBfH5h9WtnYaiO8pdh-xid4HmaNGro34dQ",
+  authDomain: "dondeesta-cde0e.firebaseapp.com",
+  databaseURL: "https://dondeesta-cde0e-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "dondeesta-cde0e",
+  storageBucket: "dondeesta-cde0e.appspot.com",
+  messagingSenderId: "521717502848",
+  appId: "1:521717502848:web:7036f33d20eb30ded7a765"
+};
+*/
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
