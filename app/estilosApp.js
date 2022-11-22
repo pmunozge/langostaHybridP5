@@ -62,7 +62,7 @@ export const styles = StyleSheet.create({
     },
     listaitem:{
         flexDirection: 'row',
-        backgroundColor: 'orange',
+        backgroundColor: "#424242",
         padding: 10,
 
     }
