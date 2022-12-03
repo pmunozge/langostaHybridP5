@@ -32,8 +32,11 @@ export class MenuRetos extends React.Component{
             
                 </View>
              
-                <View style={styles.fila}>
-                
+                <View style={styles.filareto}>
+                    <TouchableOpacity style={styles.botonreto} onPress={() => this.props.navigate('NuevoReto')}>
+                        <Text style={styles.textoBoton}>LOREM IPSUM</Text>
+                    </TouchableOpacity>
+            
                 </View>
                
         </View>
