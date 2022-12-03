@@ -4,7 +4,8 @@ import { StyleSheet, View } from 'react-native';
 import { Text, Button } from 'react-native';
 import { Home} from './app/views/Home.js'
 import { Evolucion} from './app/views/Evolucion.js'
-import { NuevoReto} from './app/views/NuevoReto.js'
+//import { NuevoReto} from './app/views/NuevoReto.js'
+import NuevoReto from './app/views/NuevoReto.js'
 import { Perfil} from './app/views/Perfil.js'
 import { Contactar} from './app/views/Contactar.js'
 import { Reto} from './app/views/Reto.js'

@@ -1,23 +1,36 @@
+import React from "react";
+import { SafeAreaView, StyleSheet, TextInput,Text } from "react-native";
 
-import React from 'react';
-import { View, StyleSheet,TouchableOpacity, Text, Alert} from 'react-native';
-import {styles} from '../estilosApp.js';
-import { MenuRetos } from '../widgets/MenuRetos.js';
-import { ZonaLogo } from '../widgets/ZonaLogo.js';
+const NuevoReto = () => {
+  const [nombre, setName] = React.useState("DefaultN");
+  const [detalle,setDetalle] =React.useState("DefaultD");
 
+  return (
+    <SafeAreaView>
+    <Text>Nombre</Text>
+    <TextInput
+        style={styles.input}
+        onChangeText={(value)=>setName(value)}
+        placeholder="useless placeholder"
+      />
+    <Text>Detalle</Text>
+    <Text>Categoria</Text>
+    <Text>Tiempo</Text>
+    <Text>Periodicidad</Text>
 
-export class NuevoReto extends React.Component{
-    render(){
-        const { navigate } = this.props.navigation;
-        return(
-            <View style={styles.contenedor}>
-            <ZonaLogo/>
-            <View style= {styles.contenido}>
-                <Text>Contenido de Nuevo Reto</Text>
-            </View>
-            <MenuRetos navigate={navigate}/>
-        </View>            
-        )
-    }
-     
-}
+    <Text>name:{nombre},detalle:{detalle}</Text>
+
+    </SafeAreaView>
+  );
+};
+
+const styles = StyleSheet.create({
+  input: {
+    height: 40,
+    margin: 12,
+    borderWidth: 1,
+    padding: 10,
+  },
+});
+
+export default NuevoReto;
