@@ -1,5 +1,6 @@
-import { initializeApp, getApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
+import { firebase, initializeApp, getApp } from "firebase/app";
+import {  getFirestore } from "firebase/firestore";
+;
 
 //import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 //import geofire from 'geofire';
