@@ -1,5 +1,8 @@
 import React from "react";
-import { SafeAreaView, StyleSheet, TextInput,Text, Button } from "react-native";
+import { SafeAreaView, StyleSheet, TextInput,Text} from "react-native";
+import { Button,Icon } from 'react-native-elements';
+
+
 
 const NuevoReto = () => {
   const [nombre, setName] = React.useState("DefaultN");
@@ -40,10 +43,15 @@ const NuevoReto = () => {
         onChangeText={(valueP)=>setPeriodicidad(valueP)}
         placeholder="Periodicidad"
       />
-    <Button
-        
-        title="Guardar"
-        color="orange"
+     
+   
+<Button
+  icon={{
+    name: "save",
+    size: 15,
+    color: "white"
+  }}
+  title="Button with icon object"
 />
 
     <Text>name:{nombre},detalle:{detalle},categoria:{categoria},tiempo:{tiempo},Periodicidad:{periodicidad}</Text>
