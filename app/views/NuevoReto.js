@@ -106,9 +106,10 @@ const NuevoReto = () => {
         icon={{
           name: "save",
           size: 15,
-          color: "white"
+          color: "orange"
         }}
         title="Guardar"
+ 
       />
 
     <Text>name:{nombre},detalle:{detalle},categoria:{categoria},tiempo:{tiempo},Periodicidad:{periodicidad}</Text>
