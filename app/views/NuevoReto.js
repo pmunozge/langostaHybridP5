@@ -12,16 +12,45 @@ const NuevoReto = () => {
   const [errorMessageT, setErrorMessageT] = React.useState('');
   const [errorMessageP, setErrorMessageP] = React.useState('');
 
-  const [nombre, setName] = React.useState("DefaultN");
-  const [detalle,setDetalle] =React.useState("DefaultD");
-  const [categoria,setCategoria] =React.useState("DefaultC");
-  const [tiempo,setTiempo] =React.useState("DefaultT");
-  const [periodicidad,setPeriodicidad] =React.useState("DefaultP");
+  const [nombre, setName] = React.useState("");
+  const [detalle,setDetalle] =React.useState("");
+  const [categoria,setCategoria] =React.useState("");
+  const [tiempo,setTiempo] =React.useState("");
+  const [periodicidad,setPeriodicidad] =React.useState("");
 
   const  comprobarDatosInput = () => {
-    
-    setErrorMessageN("Example error message!")
-    console.log(errorMessageN)
+    //Comprobacion de que no estan vacios
+    if(nombre=="")
+      setErrorMessageN("No puedes dejar el nombre vacío")
+    else
+      setErrorMessageN("")
+    if(detalle=="")
+      setErrorMessageD("No puedes dejar el detalle vacío")
+    else
+      setErrorMessageD("")
+    if(categoria=="")
+      setErrorMessageC("No puedes dejar la categoria vacía")
+    else
+      setErrorMessageC("") 
+
+    //Doble comprobacion numerico y vacio
+    if(tiempo==""){
+      setErrorMessageT("No puedes dejar el tiempo vacío")
+    }else if(isNaN(parseInt(tiempo))){
+      setErrorMessageT("Tiene que ser un campo numerico")
+    }
+    else{
+      setErrorMessageT("")   
+    } 
+    if(periodicidad==""){
+      setErrorMessageP("No puedes dejar la periodiciadad vacía")
+    }else if(isNaN(parseInt(periodicidad))){
+      setErrorMessageP("Tiene que ser un campo numerico")
+    }
+    else{
+      setErrorMessageT("")   
+    } 
+
   }
 
   return (
@@ -33,6 +62,7 @@ const NuevoReto = () => {
         onChangeText={(valueN)=>setName(valueN)}
         placeholder="Nombre"
         errorStyle={{ color: 'orange' }}
+        
         errorMessage={errorMessageN}
       />
       
@@ -41,6 +71,7 @@ const NuevoReto = () => {
         style={styles.input}
         onChangeText={(valueD)=>setDetalle(valueD)}
         placeholder="Detalle"
+        errorStyle={{ color: 'orange' }}
         errorMessage={errorMessageD}
       />
     <Text>Categoria</Text>
@@ -48,6 +79,7 @@ const NuevoReto = () => {
         style={styles.input}
         onChangeText={(valueC)=>setCategoria(valueC)}
         placeholder="Categoria"
+        errorStyle={{ color: 'orange' }}
         errorMessage={errorMessageC}
       />
     <Text>Tiempo</Text>
@@ -55,6 +87,7 @@ const NuevoReto = () => {
         style={styles.input}
         onChangeText={(valueT)=>setTiempo(valueT)}
         placeholder="Tiempo"
+        errorStyle={{ color: 'orange' }}
         errorMessage={errorMessageT}
       />
     <Text>Periodicidad</Text>
@@ -62,6 +95,7 @@ const NuevoReto = () => {
         style={styles.input}
         onChangeText={(valueP)=>setPeriodicidad(valueP)}
         placeholder="Periodicidad"
+        errorStyle={{ color: 'orange' }}
         errorMessage={errorMessageP}
       />
      
