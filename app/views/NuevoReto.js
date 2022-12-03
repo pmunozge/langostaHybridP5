@@ -4,21 +4,44 @@ import { SafeAreaView, StyleSheet, TextInput,Text } from "react-native";
 const NuevoReto = () => {
   const [nombre, setName] = React.useState("DefaultN");
   const [detalle,setDetalle] =React.useState("DefaultD");
+  const [categoria,setCategoria] =React.useState("DefaultC");
+  const [tiempo,setTiempo] =React.useState("DefaultT");
+  const [periodicidad,setPeriodicidad] =React.useState("DefaultP");
 
   return (
     <SafeAreaView>
     <Text>Nombre</Text>
     <TextInput
         style={styles.input}
-        onChangeText={(value)=>setName(value)}
-        placeholder="useless placeholder"
+        onChangeText={(valueN)=>setName(valueN)}
+        placeholder="Nombre"
       />
     <Text>Detalle</Text>
+    <TextInput
+        style={styles.input}
+        onChangeText={(valueD)=>setDetalle(valueD)}
+        placeholder="Detalle"
+      />
     <Text>Categoria</Text>
+    <TextInput
+        style={styles.input}
+        onChangeText={(valueC)=>setCategoria(valueC)}
+        placeholder="Categoria"
+      />
     <Text>Tiempo</Text>
+    <TextInput
+        style={styles.input}
+        onChangeText={(valueT)=>setTiempo(valueT)}
+        placeholder="Tiempo"
+      />
     <Text>Periodicidad</Text>
+    <TextInput
+        style={styles.input}
+        onChangeText={(valueP)=>setPeriodicidad(valueP)}
+        placeholder="Periodicidad"
+      />
 
-    <Text>name:{nombre},detalle:{detalle}</Text>
+    <Text>name:{nombre},detalle:{detalle},categoria:{categoria},tiempo:{tiempo},Periodicidad:{periodicidad}</Text>
 
     </SafeAreaView>
   );
