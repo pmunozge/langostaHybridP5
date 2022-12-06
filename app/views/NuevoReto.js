@@ -2,10 +2,11 @@ import React , { useState}from "react";
 import { SafeAreaView, StyleSheet, TextInput,Text,Alert,Form} from "react-native";
 import { Button,Icon,Input } from 'react-native-elements';
 import db from '../config/db.js';
-import { doc, addDoc, setDoc, collection} from "firebase/firestore"; 
+import { doc, addDoc, setDoc, collection} from "firebase/firestore";
+import { MenuRetos } from '../widgets/MenuRetos.js';
 
 
-const NuevoReto = () => {
+const NuevoReto = (props) => {
 
   const [state, setState] = useState({
     name: '',
@@ -46,11 +47,11 @@ const guardarNuevoReto = async() => {
   
 } 
 
-  const [errorMessageN, setErrorMessageN] = React.useState('');
-  const [errorMessageD, setErrorMessageD] = React.useState('');
-  const [errorMessageC, setErrorMessageC] = React.useState('');
-  const [errorMessageT, setErrorMessageT] = React.useState('');
-  const [errorMessageP, setErrorMessageP] = React.useState('');
+  const [errorMessageN, setErrorMessageN] = useState('');
+  const [errorMessageD, setErrorMessageD] = useState('');
+  const [errorMessageC, setErrorMessageC] = useState('');
+  const [errorMessageT, setErrorMessageT] = useState('');
+  const [errorMessageP, setErrorMessageP] = useState('');
 
  /*  const [nombre, setName] = React.useState("");
   const [detalle,setDetalle] =React.useState("");
@@ -172,7 +173,8 @@ const guardarNuevoReto = async() => {
       />
 {/* 
     <Text>name:{nombre},detalle:{detalle},categoria:{categoria},tiempo:{tiempo},Periodicidad:{periodicidad}</Text> */}
-
+      <MenuRetos navigate={props.navigation.navigate}/>
+      
     </SafeAreaView>
   );
 };
