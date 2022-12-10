@@ -4,6 +4,7 @@ import { Button,Icon,Input } from 'react-native-elements';
 import db from '../config/db.js';
 import { doc, addDoc, setDoc, collection} from "firebase/firestore";
 import { MenuRetos } from '../widgets/MenuRetos.js';
+import {styles} from '../estilosApp.js';
 
 
 const NuevoReto = (props) => {
@@ -13,12 +14,14 @@ const NuevoReto = (props) => {
     detalle:'',
     categoria:'',
     tiempo:'',
-    periodicidad:''
+    periodicidad:'', 
+    completado:''
   })
 
 const handleChangeText = (name, value) => {
   setState({...state, [name]: value})
 };
+
 
 const guardarNuevoReto = async() => {
 
@@ -30,7 +33,8 @@ const guardarNuevoReto = async() => {
       categoria: state.categoria,
       tiempo: state.tiempo,
       periodicidad: state.periodicidad,
-      detalle: state.detalle
+      detalle: state.detalle,
+      completado:'0%'
     }
 
 
@@ -38,10 +42,27 @@ const guardarNuevoReto = async() => {
   
     addDoc(docRef, data)
     .then(() => {
-        console.log("Document has been added successfully");
+      Alert.alert(
+        'Reto añadido con exito',
+        'Escritura base de datos exitosa',
+        [
+             {
+              text: 'OK', 
+              onPress: () => props.navigation.navigate('Evolucion')},
+        ]
+        );
+       
     })
     .catch(error => {
-        console.log(error);
+      Alert.alert(
+        'Fallo al crear reto',
+        'Escritura en base de datos fallida',
+        [
+             {
+              text: 'ERROR', 
+              onPress: () => props.navigation.navigate('NuevoReto')},
+        ]
+        );
     })
   }
   
@@ -114,7 +135,7 @@ const guardarNuevoReto = async() => {
   }
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.contenedor}>
     <Text>Nombre</Text>
     
     <Input
@@ -179,7 +200,7 @@ const guardarNuevoReto = async() => {
   );
 };
 
-
+/* 
 const styles = StyleSheet.create({
   input: {
     height: 40,
@@ -188,7 +209,7 @@ const styles = StyleSheet.create({
     padding: 10,
   },
 });
-
+ */
 
 
 
