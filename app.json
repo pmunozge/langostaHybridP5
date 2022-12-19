@@ -18,13 +18,29 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "splash": {
+        "image": "./assets/splashLangosta.png",
+        "resizeMode": "cover",
+        "backgroundColor": "#ffffff"
+      }
     },
     "android": {
       "package": "com.uoc.eresElMejor",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
+      },
+      "splash": {
+        "ldpi": "./assets/langostaAndroid.png",
+        "mdpi": "./assets/langostaAndroid.png",
+        "hdpi": "./assets/langostaAndroid.png",
+        "xhdpi": "./assets/langostaAndroid.png",
+        "xxhdpi": "./assets/langostaAndroid.png",
+        "xxxhdpi": "./assets/langostaAndroid.png",
+        "tabletImage": "./assets/langostaAndroid.png",
+        "resizeMode": "contain",
+        "backgroundColor": "#ffffff"
       }
       
     },
