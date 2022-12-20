@@ -20,8 +20,14 @@
     "ios": {
       "supportsTablet": true,
       "splash": {
-        "image": "./assets/splashLangosta.png",
-        "resizeMode": "cover",
+        "ldpi": "./assets/langostaIOS.png",
+        "mdpi": "./assets/langostaIOS.png",
+        "hdpi": "./assets/langostaIOS.png",
+        "xhdpi": "./assets/langostaIOS.png",
+        "xxhdpi": "./assets/langostaIOS.png",
+        "xxxhdpi": "./assets/langostaIOS.png",
+        "tabletImage": "./assets/langostaIOS.png",
+        "resizeMode": "contain",
         "backgroundColor": "#ffffff"
       }
     },
@@ -38,7 +44,7 @@
         "xhdpi": "./assets/langostaAndroid.png",
         "xxhdpi": "./assets/langostaAndroid.png",
         "xxxhdpi": "./assets/langostaAndroid.png",
-        "tabletImage": "./assets/langostaAndroid.png",
+        "tabletImage": "./assets/langostaAndroidTablet.png",
         "resizeMode": "contain",
         "backgroundColor": "#ffffff"
       }
