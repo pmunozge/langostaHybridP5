@@ -72,4 +72,10 @@ export const styles = StyleSheet.create({
         borderWidth: 1,
         padding: 10,
       },
+    barraProgreso:{
+        flex: 1,
+        backgroundColor: '#353535',
+        justifyContent: 'center',
+        
+    }
 });

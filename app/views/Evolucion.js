@@ -1,6 +1,6 @@
 import React, { Component, useEffect } from 'react';
 import {styles} from '../estilosApp.js';
-import { Text , View , FlatList, TouchableOpacity} from 'react-native';
+import { Text , View , FlatList, TouchableOpacity,ProgressBarAndroid} from 'react-native';
 import { Badge } from "react-native-elements";
 
 import db from '../config/db.js';
@@ -22,6 +22,7 @@ export class Evolucion extends Component {
 
     
     async componentDidMount() {
+        
         const querySnapshot = await getDocs(collection(db, "retos"));
         querySnapshot.forEach((doc) => {
           // doc.data() is never undefined for query doc snapshots
@@ -29,7 +30,7 @@ export class Evolucion extends Component {
           //console.log(doc.id, " => ", doc.data());
 
         });
-        this.setState({retos:retos});
+        this.setState({retos:retos, loading:false});
         //console.log(retos);
     }
 
@@ -39,15 +40,26 @@ export class Evolucion extends Component {
      render(){
         const { navigate } = this.props.navigation;
 
+        if(this.state.loading){
+            return(
+            <View style={styles.barraProgreso}>
+            <Text style={{textAlignVertical: "center",textAlign: "center",}}>Cazando langostas, espere por favor</Text>
+                <ProgressBarAndroid styleAttr="Horizontal" />
+            </View>  
+            )
+        }else{
+       
+
         
         return(
-            
+
             <View style={styles.contenedor}>
                 <ZonaLogo/>
+
                 <View style= {styles.contenido}>
                 
                     <FlatList 
-                       /* onPress={() => this.props.navigation.navigate('Reto', {'nombre':item.value.nombre, 'categoria': item.value.categoria, 'detalle':item.value.detalle})}*/
+                     
                         data= {this.state.retos}
                         //renderItem={item=>this.renderItem(item)}
                         renderItem={({ item }) => 
@@ -75,27 +87,16 @@ export class Evolucion extends Component {
             </View>          
         );
     };
-
-
-
+}
 
     onclick_item = (item) => {
 
         console.log(item);
 
         this.props.navigation.navigate('Reto');
-   /*      switch (item) {
-          case 0:
-            this.props.navigation.navigate('Reto');
-       
-            break;
-          case 1:
-            this.props.navigation.navigate('Grupos');
-            break;
-          default:
-          //whatever you want
-        } */
+
     }
+    
 
 
  }
