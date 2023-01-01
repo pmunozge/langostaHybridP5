@@ -192,6 +192,17 @@ const guardarNuevoReto = async() => {
         title="Guardar"
  
       />
+      <Button
+        //onPress={() => Alert.alert('Button with adjusted color pressed')}
+        onPress={ () => guardarNuevoReto()}
+        icon={{
+          name: "camera",
+          size: 15,
+          color: "orange"
+        }}
+        title="Nuevo icono"
+ 
+      />
 {/* 
     <Text>name:{nombre},detalle:{detalle},categoria:{categoria},tiempo:{tiempo},Periodicidad:{periodicidad}</Text> */}
       <MenuRetos navigate={props.navigation.navigate}/>
