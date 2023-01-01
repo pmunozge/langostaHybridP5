@@ -1,6 +1,7 @@
 import React, { Component, useEffect } from 'react';
 import {styles} from '../estilosApp.js';
-import { Text , View , FlatList, TouchableOpacity,ProgressBarAndroid} from 'react-native';
+import { Text , View , FlatList, TouchableOpacity} from 'react-native';
+import {ProgressBar} from '@react-native-community/progress-bar-android';
 import { Badge } from "react-native-elements";
 
 import db from '../config/db.js';
@@ -44,7 +45,7 @@ export class Evolucion extends Component {
             return(
             <View style={styles.barraProgreso}>
             <Text style={{textAlignVertical: "center",textAlign: "center",}}>Cazando langostas, espere por favor</Text>
-                <ProgressBarAndroid styleAttr="Horizontal" />
+                <ProgressBar styleAttr="Horizontal" />
             </View>  
             )
         }else{

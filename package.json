@@ -9,6 +9,7 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@react-native-community/progress-bar-android": "^1.0.5",
     "@react-native-firebase/app": "~15.4.0",
     "@react-native-firebase/firestore": "^16.4.5",
     "@react-navigation/native": "^6.0.13",

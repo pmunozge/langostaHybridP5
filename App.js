@@ -15,6 +15,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Companieros } from './app/views/Companieros.js';
 import { Grupos } from './app/views/Grupos.js';
 import { About } from './app/views/About.js';
+import { CameraView } from './app/views/CameraView.js';
 import { SafeAreaView } from 'react-navigation';
 
 import {db}from './app/config/db.js';
@@ -173,6 +174,24 @@ export default function App() {
             component={Reto} 
             options={({ navigation }) => ({
             title: 'Reto',
+            headerTitleAlign: 'center',
+            headerRight: () => (
+              <Button title="Inicio" onPress={() =>
+                navigation.navigate('Home')} color="orange" />
+            ),
+            headerLeft: () =>(
+              <Button title="Back" onPress={() =>
+                navigation.goBack()} color="orange" />
+  
+            ),
+           
+            })}
+        />
+        <Stack.Screen 
+            name="CameraView" 
+            component={CameraView} 
+            options={({ navigation }) => ({
+            title: 'Camera',
             headerTitleAlign: 'center',
             headerRight: () => (
               <Button title="Inicio" onPress={() =>

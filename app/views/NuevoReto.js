@@ -194,7 +194,7 @@ const guardarNuevoReto = async() => {
       />
       <Button
         //onPress={() => Alert.alert('Button with adjusted color pressed')}
-        onPress={ () => guardarNuevoReto()}
+        onPress={() => props.navigation.navigate('CameraView')}
         icon={{
           name: "camera",
           size: 15,
