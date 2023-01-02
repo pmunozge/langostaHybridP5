@@ -9,6 +9,7 @@ import {styles} from '../estilosApp.js';
 
 const NuevoReto = (props) => {
 
+
   const [state, setState] = useState({
     name: '',
     detalle:'',
@@ -22,12 +23,20 @@ const handleChangeText = (name, value) => {
   setState({...state, [name]: value})
 };
 
+const returnData = (img) =>{
+  this.setState({img: img});
+  console.log(this.state.img);
+};
 
 const guardarNuevoReto = async() => {
+
+  
+
 
   if(comprobarDatosInput()){
 
     const docRef = collection(db, "retos")
+
     const data = {
       nombre: state.name,
       categoria: state.categoria,
@@ -87,6 +96,8 @@ const guardarNuevoReto = async() => {
     var c = false;
     var t = false;
     var p = false;
+
+   
     //Comprobacion de que no estan vacios
     if(state.name===''){
       setErrorMessageN("No puedes dejar el nombre vacío");
@@ -194,7 +205,7 @@ const guardarNuevoReto = async() => {
       />
       <Button
         //onPress={() => Alert.alert('Button with adjusted color pressed')}
-        onPress={() => props.navigation.navigate('CameraView')}
+        onPress={() => props.navigation.navigate('CameraView', {returnData: returnData.bind(this)})}
         icon={{
           name: "camera",
           size: 15,
