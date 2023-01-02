@@ -9,6 +9,7 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@expo/webpack-config": "^0.17.0",
     "@react-native-community/progress-bar-android": "^1.0.5",
     "@react-native-firebase/app": "~15.4.0",
     "@react-native-firebase/firestore": "^16.4.5",
@@ -16,6 +17,7 @@
     "@react-navigation/native-stack": "^6.9.1",
     "expo": "~46.0.16",
     "expo-camera": "~12.4.0",
+    "expo-image-picker": "~13.3.1",
     "expo-status-bar": "~1.4.0",
     "firebase": "^9.14.0",
     "react": "18.0.0",
@@ -29,7 +31,8 @@
     "react-native-screens": "~3.15.0",
     "react-native-web": "~0.18.7",
     "react-navigation": "^4.4.4",
-    "react-navigation-stack": "^2.10.4"
+    "react-navigation-stack": "^2.10.4",
+    "webpack": "4.43.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9"
