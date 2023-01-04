@@ -75,7 +75,7 @@ export function CameraView({ props}) {
     
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
-      allowsEditing: false,
+      allowsEditing: true,
       base64: true 
     });
 

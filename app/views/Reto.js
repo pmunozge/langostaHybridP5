@@ -5,7 +5,7 @@ import {styles} from '../estilosApp.js';
 import { MenuRetos } from '../widgets/MenuRetos.js';
 import { ZonaLogo } from '../widgets/ZonaLogo.js';
 import * as FileSystem from 'expo-file-system';
-import RNFetchBlob from 'react-native-fetch-blob'
+//import RNFetchBlob from 'react-native-fetch-blob'
 
 
 //{'nombre':item.value.nombre, 'categoria': item.value.categoria, 'detalle':item.value.detalle
@@ -42,7 +42,7 @@ export class Reto extends React.Component{
          console.log(img);
 
          //El Fetch No parece hacer nada
-         
+
       /*   const getMovies = async () => {
             try {
                 const response = await fetch(img, {
@@ -83,7 +83,7 @@ export class Reto extends React.Component{
                  <Text>Periodicidad: {periodicidad}</Text>
                  <Text>Completado: {completado}</Text>
                  <Text>Tiempo: {tiempo}</Text>
-                {/*  <Text>Img: {img}</Text> */}
+                 {/* <Text>Img: {img}</Text> */}
                 <Image style={{width: 100, height: 50, borderWidth: 1, borderColor: 'red'}} source={{uri: base64Img}}/>
                 </View>
                 <MenuRetos navigate={navigate}/>
