@@ -190,7 +190,7 @@ export default function App() {
         <Stack.Screen 
             name="CameraView" 
             component={CameraView} 
-            options={({ navigation }) => ({
+            options={({ navigation , route}) => ({
             title: 'Camera',
             headerTitleAlign: 'center',
             headerRight: () => (

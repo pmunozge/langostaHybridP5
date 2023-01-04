@@ -1,17 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, Button, Image } from 'react-native';
 import { Camera } from 'expo-camera';
-import * as ImagePicker from 'expo-image-picker';
+//import * as ImagePicker from 'expo-image-picker';
+import * as ImagePicker from "expo-image-picker/src/ImagePicker";
 import {styles} from '../estilosApp.js';
+import { useNavigation } from '@react-navigation/native';
 
 
-export function CameraView({ props }) {
-
+export function CameraView({ props}) {
+    const navigation = useNavigation();
+    let imageUri = '';
+    
   const [cameraPermission, setCameraPermission] = useState(null);
   const [imagePermission, setGalleryPermission] = useState(null);
 
   const [camera, setCamera] = useState(null);
-  const [imageUri, setImageUri] = useState(null);
+  //const [imageUri, setImageUri] = useState(null);
   const [type, setType] = useState(Camera.Constants.Type.back);
 
   const permisionFunction = async () => {
@@ -46,13 +50,20 @@ export function CameraView({ props }) {
   const takePicture = async () => {
     if (camera) {
       try{ 
-      const photo = await camera.takePictureAsync();
-      props.navigation.state.params.returnData(photo);
+      const options = { quality: 0.7, base64: true };
+      const photo = await camera.takePictureAsync(options);
+        
+ 
+      console.log(photo.uri);
+      const filename = photo.uri.substring(photo.uri.lastIndexOf('/') + 1);
+      
 
-      console.log(data.uri);
-      setImageUri(data.uri);
-
-      props.navigation.goBack();
+      console.log('photo', photo);
+      
+      navigation.navigate('NuevoReto', {img: photo})
+       
+        
+        
       }catch(e){
         console.log(e);
       }
@@ -60,19 +71,20 @@ export function CameraView({ props }) {
   };
 
   const pickImage = async () => {
+
     
-      let result = await ImagePicker.launchImageLibraryAsync({
+    let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
-      allowsEditing: true,
-      aspect: [1, 1],
-      quality: 1,
-   
+      allowsEditing: false,
+      base64: true 
     });
 
-    console.log(result);
-    if (!result.cancelled) {
-      setImageUri(result.uri);
-    }
+    console.log('resultado  '+ result.uri);
+    imageUri = result.uri;
+    //setImageUri(result.uri);      
+    console.log('imageUri '+ imageUri);
+    
+    navigation.navigate('NuevoReto', {img: result})
   };
     return (
         <View style={styles.contenedor}>
@@ -97,7 +109,7 @@ export function CameraView({ props }) {
             </Camera>
             <Button title={'Take Picture'} onPress={takePicture} />
             <Button title={'Gallery'} onPress={pickImage} />
-            {imageUri && <Image source={{ uri: imageUri }} style={{ flex: 1 }} />}
+            {imageUri && <Image source={{ uri: imageUri }} style={{alignSelf:'center', height: 200, width:200}} />}
         </View>
     );
 }

@@ -1,78 +1,187 @@
 import React , { useState}from "react";
-import { SafeAreaView, StyleSheet, TextInput,Text,Alert,Form} from "react-native";
-import { Button,Icon,Input } from 'react-native-elements';
-import db from '../config/db.js';
+import { SafeAreaView, Text, Alert} from "react-native";
+import { Button,Input } from 'react-native-elements';
+import { db, storage } from '../config/db.js';
 import { doc, addDoc, setDoc, collection} from "firebase/firestore";
 import { MenuRetos } from '../widgets/MenuRetos.js';
 import {styles} from '../estilosApp.js';
+import { CameraView } from '../views/CameraView.js';
+import { getStorage, ref, uploadBytes, getDownloadURL} from "firebase/storage";
+//import storage from '@react-native-firebase/storage';
 
 
-const NuevoReto = (props) => {
+
+export default function NuevoReto({navigation, route}) {
+ 
+  //const storage = getStorage();
+ 
+ 
+ 
+  const { img } =   route?.params || {};
+  console.log("image :" + img); 
 
 
+  const subirImagen =  async() =>{
+
+    
+    
+    const filename = img.uri.substring(img.uri.lastIndexOf('/') + 1);
+    const uploadUri = Platform.OS === 'ios' ? img.uri.replace('file://', '') : img;
+    
+    const storageRef = ref(storage, `images/${filename}`);
+
+    const imgblob = new Blob([JSON.stringify(img)], {
+      type: "application/json",
+    });
+    uploadBytes(storageRef, imgblob).then((snapshot) => {
+      console.log('Uploaded a blob or file!');
+      getDownloadURL(snapshot.ref).then( url => {
+       
+            
+          
+          const docRef = collection(db, '/retos')
+
+          const data = {
+            nombre: state.name,
+            categoria: state.categoria,
+            tiempo: state.tiempo,
+            periodicidad: state.periodicidad,
+            detalle: state.detalle,
+            completado:'0%', 
+            img: url
+          }
+
+
+        // console.log(db);
+
+          addDoc(docRef, data)
+          .then(() => {
+            Alert.alert(
+              'Reto añadido con exito',
+              'Escritura base de datos exitosa',
+              [
+                  {
+                    text: 'OK', 
+                    onPress: () => navigation.navigate('Evolucion')},
+              ]
+              );
+            
+          })
+          .catch(error => {
+            Alert.alert(
+              'Fallo al crear reto',
+              'Escritura en base de datos fallida',
+              [
+                  {
+                    text: 'ERROR', 
+                    onPress: () => navigation.navigate('NuevoReto')},
+              ]
+              );
+          })
+                
+                
+        }     
+        
+        
+               
+        
+        )
+    });
+
+
+
+ /*    console.log(img);
+    console.log(filename);
+    const task = storage()
+      .ref(filename)
+      .putFile(uploadUri);
+    // set progress state
+    
+    try {
+      await task;
+    } catch (e) {
+      console.error(e);
+    } */
+    
+  /*   Alert.alert(
+      'Photo uploaded!',
+      'Your photo has been uploaded to Firebase Cloud Storage!'
+    ); */
+    
+
+
+
+
+
+  /*   console.log("estamos por aqui");
+    const blob = await new Promise((resolve, reject) => {
+      const xhr = new XMLHttpRequest();
+      xhr.onload = function () {
+        resolve(xhr.response);
+      };
+      xhr.onerror = function (e) {
+        console.log(e);
+        reject(new TypeError("Network request failed"));
+      };
+      xhr.responseType = "blob";
+      xhr.open("GET", img, true);
+      xhr.send(null);
+    });
+  console.log('blob '+ blob);
+    const fileRef = ref(storage, uuid.v4());
+    const result = await uploadBytes(fileRef, blob);
+  
+    // We're done with the blob, close and release it
+    blob.close();
+  
+    return await getDownloadURL(fileRef); */
+  }
+
+/*   const recoverImg = () =>{
+    if (props.route.params?.img !== this.props.route.params?.img) {
+      const result = this.props.route.params?.img;
+      console.log(result);
+     
+    };
+  }; */
+ /*  let image = props.navigation.getParam('image')
+  console.log("image :" +image); */
+  /* const returnData = (photo) =>{
+     this.setState({img: img}); 
+    console.log(photo);
+  }; */
   const [state, setState] = useState({
     name: '',
     detalle:'',
     categoria:'',
     tiempo:'',
     periodicidad:'', 
-    completado:''
+    completado:'', 
+    img: ''
   })
 
 const handleChangeText = (name, value) => {
   setState({...state, [name]: value})
 };
 
-const returnData = (img) =>{
-  this.setState({img: img});
-  console.log(this.state.img);
-};
+
+
+
+
+
+
 
 const guardarNuevoReto = async() => {
 
-  
-
-
   if(comprobarDatosInput()){
 
-    const docRef = collection(db, "retos")
 
-    const data = {
-      nombre: state.name,
-      categoria: state.categoria,
-      tiempo: state.tiempo,
-      periodicidad: state.periodicidad,
-      detalle: state.detalle,
-      completado:'0%'
-    }
+    //Cloud Storage Reference
 
+    subirImagen();
 
-    console.log(db);
-  
-    addDoc(docRef, data)
-    .then(() => {
-      Alert.alert(
-        'Reto añadido con exito',
-        'Escritura base de datos exitosa',
-        [
-             {
-              text: 'OK', 
-              onPress: () => props.navigation.navigate('Evolucion')},
-        ]
-        );
-       
-    })
-    .catch(error => {
-      Alert.alert(
-        'Fallo al crear reto',
-        'Escritura en base de datos fallida',
-        [
-             {
-              text: 'ERROR', 
-              onPress: () => props.navigation.navigate('NuevoReto')},
-        ]
-        );
-    })
+    
+
   }
   
 } 
@@ -205,7 +314,7 @@ const guardarNuevoReto = async() => {
       />
       <Button
         //onPress={() => Alert.alert('Button with adjusted color pressed')}
-        onPress={() => props.navigation.navigate('CameraView', {returnData: returnData.bind(this)})}
+        onPress={() => navigation.navigate('CameraView')}
         icon={{
           name: "camera",
           size: 15,
@@ -216,7 +325,7 @@ const guardarNuevoReto = async() => {
       />
 {/* 
     <Text>name:{nombre},detalle:{detalle},categoria:{categoria},tiempo:{tiempo},Periodicidad:{periodicidad}</Text> */}
-      <MenuRetos navigate={props.navigation.navigate}/>
+      <MenuRetos navigate={navigation.navigate}/>
       
     </SafeAreaView>
   );
@@ -235,4 +344,4 @@ const styles = StyleSheet.create({
 
 
 
-export default NuevoReto;
+/* export default NuevoReto; */
