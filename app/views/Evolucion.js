@@ -1,10 +1,10 @@
 import React, { Component, useEffect } from 'react';
 import {styles} from '../estilosApp.js';
-import { Text , View , FlatList, TouchableOpacity} from 'react-native';
+import { Text , View , FlatList, TouchableOpacity, ProgressBarAndroid} from 'react-native';
 import {ProgressBar} from '@react-native-community/progress-bar-android';
 import { Badge } from "react-native-elements";
 
-import db from '../config/db.js';
+import { db, storage } from '../config/db.js';
 import { collection, connectFirestoreEmulator, getDocs } from "firebase/firestore";
 import { MenuRetos } from '../widgets/MenuRetos.js';
 import { ZonaLogo } from '../widgets/ZonaLogo.js';
@@ -31,7 +31,7 @@ export class Evolucion extends Component {
           //console.log(doc.id, " => ", doc.data());
 
         });
-        this.setState({retos:retos, loading:false});
+        this.setState({retos:retos , loading:false });
         //console.log(retos);
     }
 
@@ -45,7 +45,7 @@ export class Evolucion extends Component {
             return(
             <View style={styles.barraProgreso}>
             <Text style={{textAlignVertical: "center",textAlign: "center",}}>Cazando langostas, espere por favor</Text>
-                <ProgressBar styleAttr="Horizontal" />
+                <ProgressBarAndroid styleAttr="Horizontal" /> 
             </View>  
             )
         }else{
