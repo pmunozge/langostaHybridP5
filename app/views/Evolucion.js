@@ -29,7 +29,7 @@ export class Evolucion extends Component {
           // doc.data() is never undefined for query doc snapshots
           retos.push({"key": doc.id, "value": doc.data()});
           //console.log(doc.id, " => ", doc.data());
-
+          
         });
         this.setState({retos:retos , loading:false });
         //console.log(retos);
@@ -71,7 +71,9 @@ export class Evolucion extends Component {
                                 'detalle':item.value.detalle ,
                                 'periodicidad':item.value.periodicidad,
                                 'tiempo':item.value.tiempo,
-                                'completado':item.value.completado})}>
+                                'completado':item.value.completado,
+                                'img':item.value.img,
+                                })}>
                                 <View style={styles.vistavertical}>
                                     <Text style= {styles.textolistatitulo}> {item.value.nombre}</Text>
                                     <Text style= {styles.textolistacontenido}> {item.value.detalle}</Text>

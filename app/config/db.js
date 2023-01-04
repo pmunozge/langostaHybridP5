@@ -32,7 +32,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 // Initialize Cloud Storage and get a reference to the service
-const storage = getStorage(app);
+const storagedb = getStorage(app);
 
 
-export  { db , storage };
+export  { db , storagedb };

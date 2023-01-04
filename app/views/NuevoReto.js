@@ -1,13 +1,14 @@
 import React , { useState}from "react";
 import { SafeAreaView, Text, Alert} from "react-native";
 import { Button,Input } from 'react-native-elements';
-import { db, storage } from '../config/db.js';
+import { db, storagedb } from '../config/db.js';
 import { doc, addDoc, setDoc, collection} from "firebase/firestore";
 import { MenuRetos } from '../widgets/MenuRetos.js';
 import {styles} from '../estilosApp.js';
 import { CameraView } from '../views/CameraView.js';
 import { getStorage, ref, uploadBytes, getDownloadURL} from "firebase/storage";
-//import storage from '@react-native-firebase/storage';
+import storage from '@react-native-firebase/storage';
+import { manipulateAsync, FlipType, SaveFormat } from 'expo-image-manipulator';
 
 
 
@@ -20,26 +21,38 @@ export default function NuevoReto({navigation, route}) {
   const { img } =   route?.params || {};
   console.log("image :" + img); 
 
+  const _resize = async () => {
+  const manipResult = await manipulateAsync(
+    img.uri, 
+    [{ resize:{
+      height: 200, 
+      
+    }}]
+  );
+
+};
 
   const subirImagen =  async() =>{
 
-    
+    _resize();
     
     const filename = img.uri.substring(img.uri.lastIndexOf('/') + 1);
     const uploadUri = Platform.OS === 'ios' ? img.uri.replace('file://', '') : img;
     
-    const storageRef = ref(storage, `images/${filename}`);
-
-    const imgblob = new Blob([JSON.stringify(img)], {
-      type: "application/json",
+  
+    const storageRef = ref(storagedb, `images/${filename}`);
+    console.log(JSON.stringify(img.base64));
+    const imgBlob = new Blob([JSON.stringify(img.base64)], filename, {
+      type: "application/text",
     });
-    uploadBytes(storageRef, imgblob).then((snapshot) => {
+  
+    uploadBytes(storageRef, imgFile).then((snapshot) => {
       console.log('Uploaded a blob or file!');
       getDownloadURL(snapshot.ref).then( url => {
        
             
           
-          const docRef = collection(db, '/retos')
+          const docRef = collection(db, 'retos')
 
           const data = {
             nombre: state.name,
@@ -48,7 +61,7 @@ export default function NuevoReto({navigation, route}) {
             periodicidad: state.periodicidad,
             detalle: state.detalle,
             completado:'0%', 
-            img: url
+            img: img.base64
           }
 
 
@@ -68,6 +81,7 @@ export default function NuevoReto({navigation, route}) {
             
           })
           .catch(error => {
+            console.log(error);
             Alert.alert(
               'Fallo al crear reto',
               'Escritura en base de datos fallida',
