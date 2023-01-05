@@ -18,10 +18,10 @@ export default function NuevoReto({navigation, route}) {
  
  
  
-  const { img } =   route?.params || {};
-  console.log("image :" + img); 
+  const { uri } =   route?.params || {};
+  console.log("uri :" + uri); 
 
-  const _resize = async () => {
+  /*const _resize = async () => {
   const manipResult = await manipulateAsync(
     img.uri, 
     [{ resize:{
@@ -30,7 +30,7 @@ export default function NuevoReto({navigation, route}) {
     }}]
   );
 
-};
+};*/
 
   const subirImagen =  async() =>{
 
@@ -104,66 +104,8 @@ export default function NuevoReto({navigation, route}) {
 
 
 
- /*    console.log(img);
-    console.log(filename);
-    const task = storage()
-      .ref(filename)
-      .putFile(uploadUri);
-    // set progress state
-    
-    try {
-      await task;
-    } catch (e) {
-      console.error(e);
-    } */
-    
-  /*   Alert.alert(
-      'Photo uploaded!',
-      'Your photo has been uploaded to Firebase Cloud Storage!'
-    ); */
-    
-
-
-
-
-
-  /*   console.log("estamos por aqui");
-    const blob = await new Promise((resolve, reject) => {
-      const xhr = new XMLHttpRequest();
-      xhr.onload = function () {
-        resolve(xhr.response);
-      };
-      xhr.onerror = function (e) {
-        console.log(e);
-        reject(new TypeError("Network request failed"));
-      };
-      xhr.responseType = "blob";
-      xhr.open("GET", img, true);
-      xhr.send(null);
-    });
-  console.log('blob '+ blob);
-    const fileRef = ref(storage, uuid.v4());
-    const result = await uploadBytes(fileRef, blob);
-  
-    // We're done with the blob, close and release it
-    blob.close();
-  
-    return await getDownloadURL(fileRef); */
   }
 
-/*   const recoverImg = () =>{
-    if (props.route.params?.img !== this.props.route.params?.img) {
-      const result = this.props.route.params?.img;
-      console.log(result);
-     
-    };
-  }; */
- /*  let image = props.navigation.getParam('image')
-  console.log("image :" +image); */
-  /* const returnData = (photo) =>{
-     this.setState({img: img}); 
-    console.log(photo);
-  }; */
   const [state, setState] = useState({
     name: '',
     detalle:'',
@@ -192,13 +134,50 @@ const guardarNuevoReto = async() => {
 
     //Cloud Storage Reference
 
-    subirImagen();
-
-    
-
+    //subirImagen();
+    const docRef = collection(db, "retos")
+    const data = {
+      nombre: state.name,
+      categoria: state.categoria,
+      tiempo: state.tiempo,
+      periodicidad: state.periodicidad,
+      detalle: state.detalle,
+      completado:'0%',
+      img: uri
   }
+  //console.log(db);
   
+  addDoc(docRef, data)
+  .then(() => {
+    Alert.alert(
+      'Reto añadido con exito',
+      'Escritura base de datos exitosa',
+      [
+          {
+            text: 'OK', 
+            onPress: () => navigation.navigate('Evolucion')},
+      ]
+      );
+    
+  })
+  .catch(error => {
+    console.log(error);
+    Alert.alert(
+      'Fallo al crear reto',
+      'Escritura en base de datos fallida',
+      [
+          {
+            text: 'ERROR', 
+            onPress: () => navigation.navigate('NuevoReto')},
+      ]
+      );
+  })
+}
+
 } 
+
+  
+
 
   const [errorMessageN, setErrorMessageN] = useState('');
   const [errorMessageD, setErrorMessageD] = useState('');

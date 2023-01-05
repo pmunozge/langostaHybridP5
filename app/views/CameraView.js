@@ -72,9 +72,27 @@ export function CameraView({ props}) {
 
   const pickImage = async () => {
 
-    
     let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
+
+    console.log(result);
+    navigation.navigate('NuevoReto', {uri: result.uri})
+
+    if (!result.canceled) {
+      setImage(result.assets[0].uri);
+    }
+    n
+  };
+
+  
+
+    /*
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
       allowsEditing: true,
       base64: true 
     });
@@ -85,7 +103,7 @@ export function CameraView({ props}) {
     console.log('imageUri '+ imageUri);
     
     navigation.navigate('NuevoReto', {img: result})
-  };
+  };*/
     return (
         <View style={styles.contenedor}>
             <Camera  ref={(ref) => setCamera(ref)} style={styles.contenido} type={type} >
