@@ -20,13 +20,30 @@ import { SafeAreaView } from 'react-navigation';
 
 import {db}from './app/config/db.js';
 
+//import { Notifications } from 'expo';
+import * as Notifications from 'expo-notifications';
+import * as Permissions from 'expo-permissions';
+import { async } from '@firebase/util';
+
 const Stack = createNativeStackNavigator();
 
+const getToken = async () =>{
+  const {status} = await Permissions.getAsync(Permissions.NOTIFICATIONS);
+  if(status !== "granted"){
+    return;
+  }
+  const token = await Notifications.getExpoPushTokenAsync();
+  console.log(token);
+  return token;
+};
 
-export default function App() {
+export default class App extends React.Component {
 
+  componentDidMount(){
+    getToken();
+  }
 
-   
+  render(){ 
   return ( 
     <NavigationContainer>
       <Stack.Navigator screenOptions={{
@@ -208,8 +225,8 @@ export default function App() {
       </Stack.Navigator>
     </NavigationContainer> 
   );
+  }
 }
-
  const styles = StyleSheet.create({
   container: {
     flex: 1,
