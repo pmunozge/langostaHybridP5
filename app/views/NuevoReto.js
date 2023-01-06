@@ -131,10 +131,6 @@ const guardarNuevoReto = async() => {
 
   if(comprobarDatosInput()){
 
-
-    //Cloud Storage Reference
-
-    //subirImagen();
     const docRef = collection(db, "retos")
     const data = {
       nombre: state.name,
