@@ -50,20 +50,11 @@ export function CameraView({ props}) {
   const takePicture = async () => {
     if (camera) {
       try{ 
-      const options = { quality: 0.7, base64: true };
+      const options = { quality: 0.7 };
       const photo = await camera.takePictureAsync(options);
         
- 
-      console.log(photo.uri);
-      const filename = photo.uri.substring(photo.uri.lastIndexOf('/') + 1);
-      
-
-      console.log('photo', photo);
-      
-      navigation.navigate('NuevoReto', {img: photo})
-       
-        
-        
+      navigation.navigate('NuevoReto', {img: photo.uri})
+              
       }catch(e){
         console.log(e);
       }
@@ -72,20 +63,16 @@ export function CameraView({ props}) {
 
   const pickImage = async () => {
 
+    
     let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
       allowsEditing: true,
-      aspect: [4, 3],
-      quality: 1,
+      base64: true 
     });
-
-    console.log(result);
-    navigation.navigate('NuevoReto', {uri: result.uri})
-
-    if (!result.canceled) {
-      setImage(result.assets[0].uri);
-    }
-    n
+    console.log(JSON.stringify(result.assets[0].uri));
+       
+    navigation.navigate('NuevoReto', {img: result.assets[0].uri})
+    
   };
 
   
@@ -107,23 +94,6 @@ export function CameraView({ props}) {
     return (
         <View style={styles.contenedor}>
             <Camera  ref={(ref) => setCamera(ref)} style={styles.contenido} type={type} >
-                {/* <View style={styles.buttonContainer}>
-                    {<TouchableOpacity
-                        style={styles.button}
-                        onPress={
-                          async() => {
-                            if(cameraRef){
-                              let photo = await cameraRef.takePictureAsync();
-                              this.props.navigation.state.params.returnData(photo);
-                              this.props.navigation.goBack();
-                            }
-                        }}>
-                        <Text style={styles.text}> Cambiar camara </Text>
-                    </TouchableOpacity>}
-                   
-                </View> */}
-
-
             </Camera>
             <Button title={'Take Picture'} onPress={takePicture} />
             <Button title={'Gallery'} onPress={pickImage} />
@@ -131,28 +101,4 @@ export function CameraView({ props}) {
         </View>
     );
 }
-
-/* const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-    },
-    camera: {
-        flex: 1,
-    },
-    buttonContainer: {
-        flex: 1,
-        backgroundColor: 'transparent',
-        flexDirection: 'row',
-        margin: 20,
-    },
-    button: {
-        flex: 0.1,
-        alignSelf: 'flex-end',
-        alignItems: 'center',
-    },
-    text: {
-        fontSize: 18,
-        color: 'white',
-    },
-}); */
 

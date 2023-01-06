@@ -48,10 +48,14 @@
         "resizeMode": "contain",
         "backgroundColor": "#ffffff"
       }
-      
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "bac2f982-7e51-4b66-9d53-523aee8d7244"
+      }
     }
   }
 }

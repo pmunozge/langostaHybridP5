@@ -1,6 +1,6 @@
 import React, { Component, useEffect } from 'react';
 import {styles} from '../estilosApp.js';
-import { Text , View , FlatList, TouchableOpacity, ProgressBarAndroid} from 'react-native';
+import { Text , View , FlatList, TouchableOpacity, Image, ProgressBarAndroid} from 'react-native';
 import {ProgressBar} from '@react-native-community/progress-bar-android';
 import { Badge } from "react-native-elements";
 
@@ -74,11 +74,14 @@ export class Evolucion extends Component {
                                 'completado':item.value.completado,
                                 'img':item.value.img,
                                 })}>
+                                 <View style={styles.vistavertical}>
+                                    <Image source={{uri: item.value.img}} style={{ width: 50, height: 50 }} />
+                                </View>
                                 <View style={styles.vistavertical}>
                                     <Text style= {styles.textolistatitulo}> {item.value.nombre}</Text>
                                     <Text style= {styles.textolistacontenido}> {item.value.detalle}</Text>
                                 </View>
-                                <View style={styles.vistabadge}>
+                                <View style={styles.vistaimg}>
                                     <Badge value={item.value.completado} status="success"></Badge>
                                 </View>
                             </TouchableOpacity>

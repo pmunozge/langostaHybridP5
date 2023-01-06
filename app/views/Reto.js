@@ -18,60 +18,8 @@ export class Reto extends React.Component{
 
         const { navigate } = this.props.navigation;
         const { nombre, categoria ,detalle, periodicidad, tiempo,completado, img} = this.props.route.params;
-        let body = '';
-        
-        //Da ERROR
-       /*  RNFetchBlob.fetch('GET', img, {
-            'Content-Type': 'application/json'
-            // more headers  ..
-        })
-        // when response status code is 200
-        .then((res) => {
-            // the conversion is done in native code
-            let base64Str = res.base64()
-            // the following conversions are done in js, it's SYNC
-            let text = res.text()
-            console.log(text);
-            let json = res.json()
-
-        })
-        // Status code is not 200
-        .catch((errorMessage, statusCode) => {
-            // error handling
-        }); */
-        // console.log(img);
-
-         //El Fetch No parece hacer nada
-
-      /*   const getMovies = async () => {
-            try {
-                const response = await fetch(img, {
-                method: 'GET',
-                headers: {
-                    "Cache-control": "no-cache",
-                    'Content-Type': 'application/json'
-                },
-                body: body,
-              }).then((response) => {
-                
-                 console.log(response.body);
-                
-                
-              }).catch((error) => console.log(error));
-
-
-
-             const json = await response.json();
-             console.log(JSON.stringify(json));
-           } catch (error) {
-             console.error(error);
-           } 
-         }
-     */
-       // var base64Img = 'data:image/png;base64,' + img;
-
-      /*   getMovies(); */
-   
+       
+               
         return(
             <View style={styles.contenedor}>
                 <ZonaLogo/>
@@ -83,7 +31,8 @@ export class Reto extends React.Component{
                  <Text>Periodicidad: {periodicidad}</Text>
                  <Text>Completado: {completado}</Text>
                  <Text>Tiempo: {tiempo}</Text>
-                 {img && <Image source={{ uri: img }} style={{ width: 200, height: 200 }} />}
+                 <Text>Img: {img}</Text>
+                 <Image source={{uri:img}} style={{ width: 200, height: 200 }} />
                  {/* <Text>Img: {img}</Text> */}
                 
                 </View>

@@ -78,6 +78,9 @@ export const styles = StyleSheet.create({
     vistabadge:{
         padding:4,
     },
+    vistaimg:{
+      flex: 2,
+  },
     listaitem:{
         flexDirection: 'row',
         backgroundColor: "#424242",

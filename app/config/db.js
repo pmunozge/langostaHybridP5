@@ -1,6 +1,6 @@
 import { firebase, initializeApp, getApp } from "firebase/app";
 import {  getFirestore } from "firebase/firestore";
-import { getStorage } from "firebase/storage";
+//import { getStorage } from "firebase/storage";
 
 
 //import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
@@ -32,7 +32,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 // Initialize Cloud Storage and get a reference to the service
-const storagedb = getStorage(app);
+//const storagedb = getStorage(app);
 
 
-export  { db , storagedb };
+export  { db  };
