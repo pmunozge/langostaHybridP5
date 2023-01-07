@@ -32,79 +32,7 @@ export default function NuevoReto({navigation, route}) {
 
 };*/
 
-  const subirImagen =  async() =>{
 
-    _resize();
-    
-    const filename = img.uri.substring(img.uri.lastIndexOf('/') + 1);
-    const uploadUri = Platform.OS === 'ios' ? img.uri.replace('file://', '') : img;
-    
-  
-    const storageRef = ref(storagedb, `images/${filename}`);
-    console.log(JSON.stringify(img.base64));
-    const imgBlob = new Blob([JSON.stringify(img.base64)], filename, {
-      type: "application/text",
-    });
-  
-    uploadBytes(storageRef, imgFile).then((snapshot) => {
-      console.log('Uploaded a blob or file!');
-      getDownloadURL(snapshot.ref).then( url => {
-       
-            
-          
-          const docRef = collection(db, 'retos')
-
-          const data = {
-            nombre: state.name,
-            categoria: state.categoria,
-            tiempo: state.tiempo,
-            periodicidad: state.periodicidad,
-            detalle: state.detalle,
-            completado:'0%', 
-            img: img.base64
-          }
-
-
-        // console.log(db);
-
-          addDoc(docRef, data)
-          .then(() => {
-            Alert.alert(
-              'Reto añadido con exito',
-              'Escritura base de datos exitosa',
-              [
-                  {
-                    text: 'OK', 
-                    onPress: () => navigation.navigate('Evolucion')},
-              ]
-              );
-            
-          })
-          .catch(error => {
-            console.log(error);
-            Alert.alert(
-              'Fallo al crear reto',
-              'Escritura en base de datos fallida',
-              [
-                  {
-                    text: 'ERROR', 
-                    onPress: () => navigation.navigate('NuevoReto')},
-              ]
-              );
-          })
-                
-                
-        }     
-        
-        
-               
-        
-        )
-    });
-
-
-
-  }
 
   const [state, setState] = useState({
     name: '',
@@ -131,10 +59,6 @@ const guardarNuevoReto = async() => {
 
   if(comprobarDatosInput()){
 
-
-    //Cloud Storage Reference
-
-    //subirImagen();
     const docRef = collection(db, "retos")
     const data = {
       nombre: state.name,

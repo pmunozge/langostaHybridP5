@@ -8,12 +8,17 @@ import { db, storage } from '../config/db.js';
 import { collection, connectFirestoreEmulator, getDocs } from "firebase/firestore";
 import { MenuRetos } from '../widgets/MenuRetos.js';
 import { ZonaLogo } from '../widgets/ZonaLogo.js';
+import {schedulePushNotification} from '../../App.js'
 //import { TouchableOpacity } from 'react-native-gesture-handler';
 
 let retos = [];
 
+let notification = false
+
 
 export class Evolucion extends Component { 
+
+    
 
 
     state = {
@@ -23,22 +28,30 @@ export class Evolucion extends Component {
 
     
     async componentDidMount() {
-        
+                
         const querySnapshot = await getDocs(collection(db, "retos"));
         querySnapshot.forEach((doc) => {
-          // doc.data() is never undefined for query doc snapshots
+      
           retos.push({"key": doc.id, "value": doc.data()});
-          //console.log(doc.id, " => ", doc.data());
+          
           
         });
         this.setState({retos:retos , loading:false });
-        //console.log(retos);
+
+        for(i in retos){
+            //console.log(i,":",retos[i].value.tiempo)
+            if(retos[i].value.tiempo==retos[i].value.periodicidad){
+                schedulePushNotification(retos[i].value.nombre);
+            }
+        }
+      
     }
 
    
-
+   
 
      render(){
+        
         const { navigate } = this.props.navigation;
 
         if(this.state.loading){
