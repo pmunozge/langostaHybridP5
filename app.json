@@ -5,6 +5,9 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
+    "notification": {
+      "icon": "./assets/iconNotification.png"
+    },
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splashLangosta.png",
@@ -51,6 +54,11 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "a8596e20-4aac-4a9b-9025-c9ed67323b99"
+      }
     }
   }
 }

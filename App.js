@@ -37,10 +37,11 @@ Notifications.setNotificationHandler({
 });
 
 export default function App() {
-  console.log("esperando")
+  //console.log("esperando")
   
     
-  schedulePushNotification();
+
+  //schedulePushNotification();
   
 
   const [expoPushToken, setExpoPushToken] = useState('');
@@ -258,14 +259,17 @@ export default function App() {
 }); 
 
 
-async function schedulePushNotification() {
+export async function schedulePushNotification(mensaje) {
+
+
   await Notifications.scheduleNotificationAsync({
     content: {
-      title: "You've got mail! 📬",
-      body: 'Here is the notification body',
+      title: "Recordatorio periodico ! 📬",
+      body: 'Debes realizar el reto:'+mensaje,
       data: { data: 'goes here' },
+
     },
-    trigger: { seconds: 2 },
+    trigger: { seconds: 1 },
   });
 }
 
