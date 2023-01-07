@@ -1,6 +1,6 @@
 import React, { Component, useEffect } from 'react';
 import {styles} from '../estilosApp.js';
-import { Text , View , FlatList, TouchableOpacity, ProgressBarAndroid} from 'react-native';
+import { Text , View , FlatList, TouchableOpacity, ProgressBarAndroid, Image} from 'react-native';
 import {ProgressBar} from '@react-native-community/progress-bar-android';
 import { Badge } from "react-native-elements";
 
@@ -65,54 +65,57 @@ export class Evolucion extends Component {
        
 
         
-        return(
+            return(
 
-            <View style={styles.contenedor}>
-                <ZonaLogo/>
-
-                <View style= {styles.contenido}>
-                
-                    <FlatList 
-                     
-                        data= {this.state.retos}
-                        //renderItem={item=>this.renderItem(item)}
-                        renderItem={({ item }) => 
-                            
-                            <TouchableOpacity style= {styles.listaitem} onPress={()=> this.props.navigation.navigate('Reto', 
-                                {'nombre':item.value.nombre, 
-                                'categoria': item.value.categoria, 
-                                'detalle':item.value.detalle ,
-                                'periodicidad':item.value.periodicidad,
-                                'tiempo':item.value.tiempo,
-                                'completado':item.value.completado,
-                                'img':item.value.img,
-                                })}>
-                                <View style={styles.vistavertical}>
-                                    <Text style= {styles.textolistatitulo}> {item.value.nombre}</Text>
-                                    <Text style= {styles.textolistacontenido}> {item.value.detalle}</Text>
-                                </View>
-                                <View style={styles.vistabadge}>
-                                    <Badge value={item.value.completado} status="success"></Badge>
-                                </View>
-                            </TouchableOpacity>
-                        }
-                        keyExtractor={(item,index)=>item.key}
-                    />
-                </View>
-                <MenuRetos navigate={navigate}/>
-            </View>          
-        );
-    };
-}
-
-    onclick_item = (item) => {
-
-        console.log(item);
-
-        this.props.navigation.navigate('Reto');
-
+                <View style={styles.contenedor}>
+                    <ZonaLogo/>
+    
+                    <View style= {styles.contenido}>
+                    
+                        <FlatList 
+                         
+                            data= {this.state.retos}
+                            //renderItem={item=>this.renderItem(item)}
+                            renderItem={({ item }) => 
+                                
+                                <TouchableOpacity style= {styles.listaitem} onPress={()=> this.props.navigation.navigate('Reto', 
+                                    {'nombre':item.value.nombre, 
+                                    'categoria': item.value.categoria, 
+                                    'detalle':item.value.detalle ,
+                                    'periodicidad':item.value.periodicidad,
+                                    'tiempo':item.value.tiempo,
+                                    'completado':item.value.completado,
+                                    'img':item.value.img,
+                                    })}>
+                                     <View style={styles.vistavertical}>
+                                        <Image source={{uri: item.value.img}} style={{ width: 50, height: 50 }} />
+                                    </View>
+                                    <View style={styles.vistavertical}>
+                                        <Text style= {styles.textolistatitulo}> {item.value.nombre}</Text>
+                                        <Text style= {styles.textolistacontenido}> {item.value.detalle}</Text>
+                                    </View>
+                                    <View style={styles.vistaimg}>
+                                        <Badge value={item.value.completado} status="success"></Badge>
+                                    </View>
+                                </TouchableOpacity>
+                            }
+                            keyExtractor={(item,index)=>item.key}
+                        />
+                    </View>
+                    <MenuRetos navigate={navigate}/>
+                </View>          
+            );
+        };
     }
     
-
-
- }
+        onclick_item = (item) => {
+    
+            console.log(item);
+    
+            this.props.navigation.navigate('Reto');
+    
+        }
+        
+    
+    
+     }

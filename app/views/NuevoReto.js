@@ -1,38 +1,65 @@
 import React , { useState}from "react";
 import { SafeAreaView, Text, Alert} from "react-native";
 import { Button,Input } from 'react-native-elements';
-import { db, storagedb } from '../config/db.js';
-import { doc, addDoc, setDoc, collection} from "firebase/firestore";
+import { db } from '../config/db.js';
+import {  addDoc, collection} from "firebase/firestore";
 import { MenuRetos } from '../widgets/MenuRetos.js';
 import {styles} from '../estilosApp.js';
-import { CameraView } from '../views/CameraView.js';
-import { getStorage, ref, uploadBytes, getDownloadURL} from "firebase/storage";
-import storage from '@react-native-firebase/storage';
-import { manipulateAsync, FlipType, SaveFormat } from 'expo-image-manipulator';
 
 
 
 export default function NuevoReto({navigation, route}) {
  
-  //const storage = getStorage();
- 
- 
- 
-  const { uri } =   route?.params || {};
-  console.log("uri :" + uri); 
+  
+  const { img } =   route?.params || {};
+  console.log("uri :" + img); 
 
-  /*const _resize = async () => {
-  const manipResult = await manipulateAsync(
-    img.uri, 
-    [{ resize:{
-      height: 200, 
-      
-    }}]
-  );
+ const subirImagen =  async() =>{
 
-};*/
+     
+    const filename = img.substring(img.lastIndexOf('/') + 1);
+    const uploadUri = Platform.OS === 'ios' ? img.replace('file://', '') : img;
+    
+    const docRef = collection(db, 'retos')
 
+    const data = {
+      nombre: state.name,
+      categoria: state.categoria,
+      tiempo: state.tiempo,
+      periodicidad: state.periodicidad,
+      detalle: state.detalle,
+      completado:'0%', 
+      img: uploadUri
+    }
 
+    addDoc(docRef, data)
+          .then(() => {
+            Alert.alert(
+              'Reto añadido con exito',
+              'Escritura base de datos exitosa',
+              [
+                  {
+                    text: 'OK', 
+                    onPress: () => navigation.navigate('Evolucion')},
+              ]
+              );
+            
+          })
+          .catch(error => {
+            console.log(error);
+            Alert.alert(
+              'Fallo al crear reto',
+              'Escritura en base de datos fallida',
+              [
+                  {
+                    text: 'ERROR', 
+                    onPress: () => navigation.navigate('NuevoReto')},
+              ]
+              );
+          })
+                  
+  }     
+     
 
   const [state, setState] = useState({
     name: '',
@@ -49,54 +76,11 @@ const handleChangeText = (name, value) => {
 };
 
 
-
-
-
-
-
-
 const guardarNuevoReto = async() => {
 
   if(comprobarDatosInput()){
-
-    const docRef = collection(db, "retos")
-    const data = {
-      nombre: state.name,
-      categoria: state.categoria,
-      tiempo: state.tiempo,
-      periodicidad: state.periodicidad,
-      detalle: state.detalle,
-      completado:'0%',
-      img: uri
+    subirImagen();
   }
-  //console.log(db);
-  
-  addDoc(docRef, data)
-  .then(() => {
-    Alert.alert(
-      'Reto añadido con exito',
-      'Escritura base de datos exitosa',
-      [
-          {
-            text: 'OK', 
-            onPress: () => navigation.navigate('Evolucion')},
-      ]
-      );
-    
-  })
-  .catch(error => {
-    console.log(error);
-    Alert.alert(
-      'Fallo al crear reto',
-      'Escritura en base de datos fallida',
-      [
-          {
-            text: 'ERROR', 
-            onPress: () => navigation.navigate('NuevoReto')},
-      ]
-      );
-  })
-}
 
 } 
 
@@ -109,11 +93,6 @@ const guardarNuevoReto = async() => {
   const [errorMessageT, setErrorMessageT] = useState('');
   const [errorMessageP, setErrorMessageP] = useState('');
 
- /*  const [nombre, setName] = React.useState("");
-  const [detalle,setDetalle] =React.useState("");
-  const [categoria,setCategoria] =React.useState("");
-  const [tiempo,setTiempo] =React.useState("");
-  const [periodicidad,setPeriodicidad] =React.useState(""); */
 
   const  comprobarDatosInput = () => {
 
@@ -219,7 +198,7 @@ const guardarNuevoReto = async() => {
      
      
     <Button
-        //onPress={() => Alert.alert('Button with adjusted color pressed')}
+       
         onPress={ () => guardarNuevoReto()}
         icon={{
           name: "save",
@@ -230,7 +209,7 @@ const guardarNuevoReto = async() => {
  
       />
       <Button
-        //onPress={() => Alert.alert('Button with adjusted color pressed')}
+       
         onPress={() => navigation.navigate('CameraView')}
         icon={{
           name: "camera",
@@ -240,25 +219,12 @@ const guardarNuevoReto = async() => {
         title="Nuevo icono"
  
       />
-{/* 
-    <Text>name:{nombre},detalle:{detalle},categoria:{categoria},tiempo:{tiempo},Periodicidad:{periodicidad}</Text> */}
+
       <MenuRetos navigate={navigation.navigate}/>
       
     </SafeAreaView>
   );
 };
 
-/* 
-const styles = StyleSheet.create({
-  input: {
-    height: 40,
-    margin: 12,
-    borderWidth: 1,
-    padding: 10,
-  },
-});
- */
 
 
-
-/* export default NuevoReto; */
